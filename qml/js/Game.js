@@ -20,7 +20,7 @@
 // The functions never change the game you give them. They make a copy and
 // return that, so the QML side always sees a new object and updates.
 
-var ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 var MAX_RECENT = 30;
 
 // ---------- small helpers ----------
@@ -50,9 +50,10 @@ function toInt(value, min, max, fallback) {
     return n;
 }
 
-// a word we can play: capital letters, maybe spaces, hyphens or apostrophes inside, max 30 long
+// a word we can play: capital letters, maybe spaces, hyphens or apostrophes inside, max 30 long.
+// Ñ counts as a letter here, but only Spanish words are cleaned with it kept
 function isValidWord(word) {
-    return /^[A-Z][A-Z '-]{0,28}[A-Z]$/.test(word);
+    return /^[A-ZÑ][A-ZÑ '-]{0,28}[A-ZÑ]$/.test(word);
 }
 
 // only the categories we know, so a hand-edited file can't sneak in odd keys
@@ -258,7 +259,7 @@ function revive(saved) {
     // keep only real letters, each once
     var guessed = "";
     var raw = toText(saved.guessed);
-    for (var i = 0; i < raw.length && i < 26; i++) {
+    for (var i = 0; i < raw.length && i < ALPHABET.length; i++) {
         var c = raw.charAt(i);
         if (isLetter(c) && guessed.indexOf(c) === -1) guessed += c;
     }

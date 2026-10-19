@@ -1,0 +1,268 @@
+# food, Spanish. one word or phrase a line
+almendra
+anchoa
+manzana
+tarta de manzana
+albaricoque
+alcachofa
+corazón de alcachofa
+espárrago
+berenjena
+aguacate
+tocino
+bagel
+baguette
+baklava
+plátano
+pan de plátano
+cebada
+albahaca
+frijol
+estofado de carne
+remolacha
+galleta
+zarzamora
+arándano
+pan
+brioche
+brócoli
+brownie
+bruschetta
+burrito
+mantequilla
+suero de leche
+repollo
+pastel
+calzone
+cantalupo
+capuchino
+caramelo
+zanahoria
+anacardo
+coliflor
+apio
+cereal
+ceviche
+cheddar
+queso
+tarta de queso
+cereza
+castaña
+pollo
+sopa de pollo
+garbanzo
+chile
+papas fritas
+chocolate
+chorizo
+chutney
+chapata
+canela
+sopa de almejas
+clementina
+sándwich club
+tarta de frutas
+coco
+café
+ensalada de col
+galleta dulce
+cilantro
+maíz
+hojuelas de maíz
+algodón de azúcar
+cuscús
+cangrejo
+galleta salada
+arándano rojo
+crema
+crepe
+croissant
+crumble
+pepino
+magdalena
+curry
+natillas
+dátil
+empanadilla
+petisú
+huevo
+enchilada
+expreso
+falafel
+hinojo
+higo
+pescado con patatas
+barrita de avena
+focaccia
+patatas fritas
+frittata
+fudge
+ajo
+gazpacho
+pan de jengibre
+ñoquis
+gulash
+granola
+uva
+pomelo
+salsa de carne
+guacamole
+gumbo
+jamón
+hamburguesa
+avellana
+miel
+rábano picante
+chocolate caliente
+perrito caliente
+hummus
+helado
+mermelada
+jambalaya
+gelatina
+col rizada
+kebab
+kétchup
+kimchi
+kiwi
+colirrábano
+chuleta de cordero
+lasaña
+puerro
+limón
+crema de limón
+limonada
+lenteja
+lechuga
+regaliz
+lima
+langosta
+macarrones
+mango
+jarabe de arce
+margarina
+mermelada de naranja
+malvavisco
+mayonesa
+melón
+merengue
+leche
+menta
+mozzarella
+muesli
+muffin
+champiñón
+mostaza
+nachos
+nectarina
+fideos
+turrón
+nuez moscada
+avena
+okra
+aceituna
+tortilla francesa
+cebolla
+naranja
+jugo de naranja
+orégano
+paella
+panqueque
+papaya
+pimentón
+parmesano
+perejil
+chirivía
+pasta
+pastelillo
+pavlova
+durazno
+maní
+crema de maní
+pera
+guisantes
+nuez pecana
+pimienta
+pepperoni
+pesto
+pepinillo
+tarta
+piña
+pistacho
+pan de pita
+pizza
+ciruela
+polenta
+granada
+palomitas
+gachas
+patata
+pretzel
+ciruela pasa
+pudín
+calabaza
+quiche
+quinoa
+rábano
+pasa
+ramen
+frambuesa
+ravioles
+ruibarbo
+arroz
+arroz con leche
+ricota
+risotto
+pan de centeno
+ensalada
+salami
+salmón
+samosa
+sándwich
+chucrut
+salchicha
+bollo
+huevos revueltos
+galleta de mantequilla
+camarón
+batido
+sorbete
+suflé
+sopa
+masa madre
+espagueti
+espinaca
+rollito de primavera
+estofado
+fresa
+strudel
+azúcar
+sushi
+batata
+jarabe
+tabulé
+taco
+mandarina
+tapas
+té
+teriyaki
+tiramisú
+tostada
+tofe
+tofu
+tomate
+tortilla
+trifle
+trufa
+atún
+nabo
+vainilla
+vinagre
+gofre
+nuez
+wasabi
+sandía
+wontón
+ñame
+yogur
+calabacín

@@ -70,23 +70,26 @@ hat, arms and nose and melts into a puddle while the sun gets bigger.
 
 Fifteen lists: animals, countries, cities, food, nature, home, jobs, sports,
 music, science, space, computers, transport, clothes and the body. About 3,000
-words, and the same ones in all four languages: English, Français, Nederlands
-and Română. `aardvark` in English is `oryctérope` in French, `aardvarken` in
-Dutch and `porc-furnicar` in Romanian, so switching language gives you the
-same game, just in other words. Around 12,000 in total.
+words, and the same ones in all five languages: English, Français, Nederlands,
+Română and Español. `aardvark` in English is `oryctérope` in French, `aardvarken`
+in Dutch, `porc-furnicar` in Romanian and `cerdo hormiguero` in Spanish, so
+switching language gives you the same game, just in other words. Around 15,000 in
+total.
 
 Pick the language and a list (or everything mixed) in the settings, and narrow
 it down to short, medium or long words. Words are played without accents, so
-`éléphant` is `ELEPHANT`, `bœuf` is `BOEUF` and `șarpe` is `SARPE`.
+`éléphant` is `ELEPHANT`, `bœuf` is `BOEUF`, `șarpe` is `SARPE` and `murciélago`
+is `MURCIELAGO`.
 
-The whole panel speaks the same four languages: buttons, settings, stats, even
-the name of the game (Hangman, Le Pendu, Galgje, Spânzurătoarea). By default it
-follows the language of the words, or pick a **Menu language** of its own, say
-English menus with Romanian words.
+The whole panel speaks the same five languages: buttons, settings, stats, even
+the name of the game (Hangman, Le Pendu, Galgje, Spânzurătoarea, El ahorcado). By
+default it follows the language of the words, or pick a **Menu language** of its
+own, say English menus with Romanian words.
 
 Every list is a plain text file in the `words/` folder, with a folder per language
-(`en`, `fr`, `nl`, `ro`) and a file per category: `words/en/animals-en.txt`,
-`words/fr/animals-fr.txt`, `words/ro/animals-ro.txt`, and so on.
+(`en`, `fr`, `nl`, `ro`, `es`) and a file per category: `words/en/animals-en.txt`,
+`words/fr/animals-fr.txt`, `words/es/animals-es.txt`, `words/ro/animals-ro.txt`,
+and so on.
 One word or phrase a line. Want more words, or a word gone? Just edit the file,
 it's read again when you switch language or restart the shell.
 
@@ -102,7 +105,7 @@ cluj-napoca
 
 and pick **Your words** in the settings. Accents are dropped (`Brașov` becomes
 `BRASOV`), anything that isn't letters, spaces, hyphens or apostrophes is skipped, and it
-keeps up to 2000 words. The file is read when the game starts and every time you
+keeps up to 2000 words. A Spanish list keeps **Ñ**, a letter of its own there. The file is read when the game starts and every time you
 pick **Your words** or ask for a new word from it, so no restart needed.
 
 ## Stats
@@ -133,8 +136,8 @@ away and lives in `~/.local/state/omarchy-hangman/settings.json`.
 
 | Setting | Default | |
 | --- | --- | --- |
-| Words in | English | English, Français, Nederlands or Română |
-| Menu language | Same as words | or English, Français, Nederlands, Română on its own |
+| Words in | English | English, Français, Nederlands, Română or Español |
+| Menu language | Same as words | or English, Français, Nederlands, Română, Español on its own |
 | Words from | Everything | one list, all of them, or your words |
 | Word length | Any | short (up to 6), medium (6 to 9), long (9+) |
 | Lives | 6 | 3 to 10 |
@@ -151,7 +154,7 @@ list or the length swaps the word straight away if you haven't guessed anything 
 | Setting | Default | |
 | --- | --- | --- |
 | Drawing | Gallows | gallows, balloons, snowman, hearts |
-| Letters on screen | QWERTY | QWERTY, A to Z, or hidden (typing always works) |
+| Letters on screen | QWERTY | QWERTY, A to Z (with the Ñ key in Spanish), or hidden (typing always works) |
 | Colors | Follow theme | your Omarchy theme live, custom, or monochrome |
 | Custom colors | | background, text and accent, swatch or hex |
 | Spacing, roundness, outline, text size, tint, opacity | | the usual |
@@ -181,7 +184,9 @@ doesn't add any keybinds itself.
 
 ## Good to know
 
-- A to Z only. Accents, `œ` and `ß` are written out. Spaces, hyphens and apostrophes
+- A to Z only, plus **Ñ** in Spanish: there it is a letter of its own, never folded
+  into an N, and it has its own key on screen. On a keyboard without one, click the
+  Ñ key. Accents, `œ` and `ß` are written out. Spaces, hyphens and apostrophes
   (`CHUTE D'EAU`) are shown from the start, you only guess the letters.
 - Your stats and the current word are in `~/.local/state/omarchy-hangman/game.json`.
   That folder is only readable by you.
@@ -200,8 +205,8 @@ qml/
 │                     StatsView, SettingsView, SettingRow, TileArt
 ├── controls/         Btn, Chip, Sw, Txt, TextBox
 └── js/               Game.js (the rules), Words.js (reading the lists), Schema.js (settings),
-                      Lang.js (every text in the panel, in four languages)
-words/                en/, fr/, nl/, ro/, 15 lists in each
+                      Lang.js (every text in the panel, in five languages)
+words/                en/, fr/, nl/, ro/, es/, 15 lists in each
 tests/test_game.js    node tests/test_game.js
 ```
 

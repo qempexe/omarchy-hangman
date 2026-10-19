@@ -1,0 +1,300 @@
+# animals, Spanish. one word or phrase a line
+cerdo hormiguero
+lobo de tierra
+albatros
+aligátor
+alpaca
+anaconda
+pez ángel
+hormiga
+oso hormiguero
+antílope
+armadillo
+ajolote
+babuino
+tejón
+águila calva
+lechuza
+barracuda
+murciélago
+castor
+abeja
+escarabajo
+bisonte
+viuda negra
+mirlo
+sabueso
+ballena azul
+jabalí
+lince rojo
+búfalo
+bulldog
+rana toro
+abejorro
+mariposa
+ratonero
+camello
+canario
+capibara
+caribú
+gato
+oruga
+bagre
+ciempiés
+camaleón
+guepardo
+pollo
+chimpancé
+chinchilla
+ardilla listada
+pez payaso
+cobra
+cacatúa
+cucaracha
+bacalao
+cóndor
+cormorán
+león de montaña
+vaca
+coyote
+cangrejo
+grulla
+cangrejo de río
+grillo
+cocodrilo
+corneja
+cuco
+perro salchicha
+dálmata
+ciervo
+dingo
+perro
+delfín
+burro
+lirón
+tórtola
+pez dragón
+libélula
+pato
+dugongo
+águila
+lombriz
+anguila
+elefante
+alce
+emú
+halcón
+hurón
+pinzón
+luciérnaga
+flamenco
+platija
+zorro
+rana
+gacela
+gecko
+jerbo
+gibón
+jirafa
+ñu
+cabra
+gobio
+golden retriever
+jilguero
+pez dorado
+ganso
+tuza
+gorila
+saltamontes
+galgo
+oso grizzly
+urogallo
+conejillo de indias
+gupi
+eglefino
+fletán
+hámster
+liebre
+gavilán
+erizo
+gallina
+cangrejo ermitaño
+garza
+arenque
+hipopótamo
+ratel
+avispón
+caballo
+perro de caza
+colibrí
+husky
+hiena
+cabra montés
+iguana
+impala
+chacal
+liebre americana
+jaguar
+arrendajo
+medusa
+canguro
+cernícalo
+ballena asesina
+martín pescador
+kiwi
+koala
+cucaburra
+mariquita
+cordero
+alondra
+sanguijuela
+lémur
+leopardo
+león
+lagarto
+llama
+langosta
+langosta migratoria
+lince
+guacamayo
+caballa
+urraca
+ánade real
+mamut
+manatí
+mandril
+marmota
+marta
+efímera
+suricata
+visón
+pececillo
+topo
+mangosta
+mono
+alce americano
+mosquito
+polilla
+ratón
+mula
+mejillón
+narval
+nautilo
+tritón
+ruiseñor
+ocelote
+pulpo
+zarigüeya
+orangután
+orca
+oropéndola
+águila pescadora
+avestruz
+nutria
+búho
+buey
+ostra
+panda
+pangolín
+pantera
+periquito
+loro
+perdiz
+pavo real
+pelícano
+pingüino
+faisán
+cerdo
+paloma
+lucio
+piraña
+ornitorrinco
+chorlito
+oso polar
+poni
+caniche
+puercoespín
+marsopa
+oposum
+gamba
+frailecillo
+puma
+pitón
+codorniz
+conejo
+mapache
+rata
+serpiente de cascabel
+cuervo
+raya
+zorro rojo
+reno
+rinoceronte
+petirrojo
+gallo
+salamandra
+salmón
+andarríos
+sardina
+escorpión
+león marino
+tortuga marina
+erizo de mar
+gaviota
+caballito de mar
+foca
+tiburón
+oveja
+musaraña
+camarón
+gusano de seda
+mofeta
+perezoso
+caracol
+agachadiza
+leopardo de las nieves
+lenguado
+gorrión
+araña
+calamar
+ardilla
+ciervo macho
+semental
+estrella de mar
+pastinaca
+armiño
+cigüeña
+golondrina
+cisne
+pez espada
+renacuajo
+tapir
+tarántula
+termita
+charrán
+tordo
+garrapata
+tigre
+sapo
+galápago
+tucán
+trucha
+atún
+pavo
+tortuga
+víbora
+topillo
+buitre
+ualabí
+morsa
+avispa
+comadreja
+ballena
+gato montés
+lobo
+glotón
+wombat
+pájaro carpintero
+reyezuelo
+yak
+cebra

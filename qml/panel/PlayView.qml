@@ -29,7 +29,7 @@ Item {
         }
         if (e.text === "?") { root.svc.useHint(); e.accepted = true; return }
         var t = Words.toText(e.text).toUpperCase()
-        if (t.length === 1 && t >= "A" && t <= "Z") { root.svc.guess(t); e.accepted = true }
+        if (t.length === 1 && Game.isLetter(t) && (t !== "Ñ" || root.enie)) { root.svc.guess(t); e.accepted = true }
     }
 
     // shake the word on a wrong letter
@@ -47,9 +47,13 @@ Item {
         function onLastMissChanged() { if (root.ui && root.ui.animations) shakeAnim.restart() }
     }
 
+    // ñ can be played in Spanish, or while the word in play has one: switching
+    // language mid-word (or loading a saved Ñ game) must never make it unwinnable
+    readonly property bool enie: !!cfg && (cfg.language === "es" || (!!game && game.word.indexOf("Ñ") !== -1))
+
     readonly property var keyRows: !cfg ? [] : (cfg.keyboard === "abc"
-        ? ["ABCDEFGHI", "JKLMNOPQR", "STUVWXYZ"]
-        : ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"])
+        ? (root.enie ? ["ABCDEFGHI", "JKLMNÑOPQ", "RSTUVWXYZ"] : ["ABCDEFGHI", "JKLMNOPQR", "STUVWXYZ"])
+        : (root.enie ? ["QWERTYUIOP", "ASDFGHJKLÑ", "ZXCVBNM"] : ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]))
 
     ColumnLayout {
         anchors.fill: parent

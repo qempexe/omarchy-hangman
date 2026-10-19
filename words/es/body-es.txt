@@ -1,0 +1,146 @@
+# body, Spanish. one word or phrase a line
+abdomen
+tendón de aquiles
+manzana de adán
+adenoides
+tobillo
+apéndice
+brazo
+axila
+arteria
+espalda
+columna
+barba
+barriga
+ombligo
+bíceps
+dedo gordo
+vejiga
+sangre
+torrente sanguíneo
+hueso
+médula ósea
+cerebro
+aliento
+entrecejo
+nalga
+pantorrilla
+colmillo
+cartílago
+cerebelo
+mejilla
+pómulo
+pecho
+mentón
+cromosoma
+clavícula
+hueso de la clavícula
+córnea
+cutícula
+diafragma
+hoyuelo
+tímpano
+lóbulo
+codo
+esófago
+ceja
+pestaña
+párpado
+cara
+dedo
+uña de la mano
+huella dactilar
+puño
+pie
+frente
+peca
+nervio cubital
+vesícula biliar
+glándula
+faringe
+encía
+pelo
+isquiotibial
+mano
+cabeza
+corazón
+talón
+cadera
+hueso de la cadera
+intestino
+iris
+mandíbula
+articulación
+riñón
+rodilla
+rótula
+nudillo
+laringe
+pierna
+ligamento
+miembro
+labio
+hígado
+zona lumbar
+pulmón
+molar
+lunar
+boca
+músculo
+uña
+nuca
+ombligo del abdomen
+cuello
+nervio
+sistema nervioso
+nariz
+narina
+palma
+páncreas
+pelvis
+poro
+próstata
+pulso
+pupila
+cuádriceps
+retina
+costilla
+caja torácica
+saliva
+cuero cabelludo
+espinilla
+hombro
+seno nasal
+esqueleto
+piel
+cráneo
+planta del pie
+columna vertebral
+bazo
+esternón
+estómago
+sudor
+sien
+tendón
+muslo
+garganta
+pulgar
+tejido
+dedo del pie
+uña del pie
+lengua
+amígdala
+diente
+torso
+tráquea
+tríceps
+vientre
+campanilla
+vena
+vértebra
+cuerdas vocales
+cintura
+vía respiratoria
+muela del juicio
+útero
+muñeca

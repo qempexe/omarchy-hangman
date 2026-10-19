@@ -1,0 +1,211 @@
+# home, Spanish. one word or phrase a line
+alarma
+despertador
+delantal
+sillón
+ropero
+ático
+balcón
+sótano
+cesta
+alfombrilla de baño
+baño
+bañera
+cama
+dormitorio
+mesita de noche
+banco
+cubo de basura
+manta
+licuadora
+persianas
+almohadón
+sujetalibros
+estantería
+botella
+cuenco
+panera
+tabla de pan
+escoba
+cubo
+litera
+gabinete
+molde de pastel
+abrelatas
+vela
+garrafa
+alfombra
+techo
+bodega
+silla
+candelabro
+chimenea
+tabla de cortar
+reloj
+clóset
+pinza de ropa
+tendedero
+posavasos
+mesa de centro
+colador
+cobertor
+libro de cocina
+hielera
+sacacorchos
+catre
+diván
+cuna
+vajilla
+taza
+armario
+cortina
+cojín
+cubiertos
+decantador
+escritorio
+lavavajillas
+puerta
+manilla
+timbre
+felpudo
+tope de puerta
+tubo de desagüe
+cajón
+cómoda
+plumero
+recogedor
+edredón
+huevera
+alargador
+ventilador
+grifo
+valla
+hogar
+suelo
+tenedor
+congelador
+nevera
+puerta principal
+sartén
+caja de fusibles
+garaje
+jardín
+portón
+vaso
+rallador
+canalón
+secador
+pasillo
+hamaca
+percha
+escotilla
+calentador
+bisagra
+gancho
+bolsa de agua caliente
+plancha
+tabla de planchar
+frasco
+jarra
+cajón de trastos
+hervidor
+llave
+llavero
+cocina
+cuchillo
+escalera de mano
+cucharón
+lámpara
+pantalla de lámpara
+despensa
+lavandería
+tapa
+interruptor
+bombilla
+sala de estar
+cerradura
+desván
+buzón
+repisa de chimenea
+colchón
+taza medidora
+microondas
+espejo
+fregona
+tazón
+servilleta
+mesilla
+horno
+guante de horno
+candado
+cazuela
+alacena
+pelador
+tablero perforado
+pistilo
+almohada
+funda de almohada
+jarro
+mantel individual
+plato
+enchufe
+desatascador
+porche
+olla
+agarrador
+colcha
+radiador
+sillón reclinable
+mecedora
+rodillo
+tapete
+salero
+cacerola
+platillo
+tijeras
+estante
+zapatero
+ducha
+contraventana
+tamiz
+fregadero
+tragaluz
+detector de humo
+jabonera
+sofá
+espátula
+esponja
+cuchara
+escalera
+escalones
+escalerilla
+taburete
+estufa
+mesa
+mantel
+paño de cocina
+tetera
+televisión
+termostato
+dedal
+tostadora
+inodoro
+toalla
+bandeja
+vaso alto
+lavadero
+aspiradora
+jarrón
+pared
+papel pintado
+guardarropa
+lavabo
+lavadora
+papelera
+calentador de agua
+esterilla
+batidor
+ventana
+alféizar
+copa de vino
+wok

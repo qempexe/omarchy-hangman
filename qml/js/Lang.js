@@ -1,6 +1,6 @@
 .pragma library
 
-// Every text you see in the panel, in English, French, Dutch and Romanian.
+// Every text you see in the panel, in English, French, Dutch, Romanian and Spanish.
 //
 //   t("ro", "tab.play")           -> "Joacă"
 //   t("fr", "head.won", 3, 5)     -> "3 sur 5 gagnés"   ({0} and {1} get filled in)
@@ -8,7 +8,7 @@
 // Missing in a language? Then the English one is used, and if that's missing too,
 // the key itself. So a forgotten translation never shows an empty button.
 
-var languages = ["en", "fr", "nl", "ro"];
+var languages = ["en", "fr", "nl", "ro", "es"];
 
 var texts = {};
 
@@ -650,6 +650,166 @@ texts.ro = {
     "hint.middleClick": "Ce face un click cu rotița pe butonul din bară.",
     "opt.middleClick.newword": "Cuvânt nou",
     "opt.middleClick.none": "Nimic"
+};
+
+texts.es = {
+    "game": "El ahorcado",
+
+    "tab.play": "Jugar",
+    "tab.stats": "Estadísticas",
+    "tab.settings": "Ajustes",
+
+    "btn.newWord": "Palabra nueva",
+    "btn.resetStats": "Borrar estadísticas",
+    "btn.resetAll": "Reiniciar todo",
+    "btn.reallyReset": "¿Seguro?",
+    "btn.popOut": "Desacoplar",
+    "btn.dock": "Acoplar",
+    "btn.nextWord": "Palabra siguiente",
+    "btn.nextWordSoon": "Palabra siguiente…",
+    "btn.hint": "Pista {0}",
+
+    "head.starting": "Empezando…",
+    "head.won": "{0} de {1} ganadas",
+    "head.streak": "racha {0}",
+    "head.best": "mejor {0}",
+
+    "foot.close": "cerrar",
+    "foot.instant": "Los cambios se aplican al momento",
+    "foot.defaults": "Todos los ajustes están por defecto",
+    "foot.differOne": "1 ajuste distinto de los valores por defecto",
+    "foot.differMany": "{0} ajustes distintos de los valores por defecto",
+    "foot.stats": "Cuenta cada palabra terminada, también la abandonada",
+    "foot.enter": "Intro para una palabra nueva",
+    "foot.help": "Escribe una letra  ·  ? para una pista  ·  Ctrl+N palabra nueva",
+
+    "play.letters": "{0} letras",
+    "play.words": "{0} palabras",
+    "play.lifeOne": "queda 1 vida",
+    "play.lives": "quedan {0} vidas",
+    "play.noWords": "No hay palabras para jugar",
+    "play.perfect": "Perfecto, sin un solo fallo",
+    "play.won": "¡La has acertado!",
+    "play.lost": "Sin vidas",
+
+    "stats.played": "jugadas",
+    "stats.won": "ganadas",
+    "stats.streak": "racha",
+    "stats.best": "mejor racha",
+    "stats.perfect": "sin fallos",
+    "stats.byCategory": "POR CATEGORÍA",
+    "stats.lastWords": "ÚLTIMAS PALABRAS",
+    "stats.empty": "Todavía nada. Termina una palabra y aparece aquí.",
+
+    "bar.help": "Clic derecho para los ajustes, clic central para una palabra nueva",
+
+    "settings.locked": "No se usa en una ventana desacoplada: el tamaño lo decide tu gestor de ventanas. Acóplala para usar esto.",
+    "settings.noCustom": "Ese archivo está vacío o no existe, así que por ahora juegas con todo.",
+    "color.hex": "hex, como #ff6a1f",
+    "color.customBg": "Fondo",
+    "color.customFg": "Texto",
+    "color.accentColor": "Acento",
+
+    "group.game": "Juego",
+    "group.look": "Aspecto",
+    "group.panel": "Panel",
+
+    "cat.mixed": "Todo",
+    "cat.custom": "Tus palabras",
+    "cat.animals": "Animales",
+    "cat.countries": "Países",
+    "cat.cities": "Ciudades",
+    "cat.food": "Comida",
+    "cat.nature": "Naturaleza",
+    "cat.home": "Casa",
+    "cat.jobs": "Profesiones",
+    "cat.sports": "Deportes",
+    "cat.music": "Música",
+    "cat.science": "Ciencia",
+    "cat.space": "Espacio",
+    "cat.tech": "Informática",
+    "cat.transport": "Transporte",
+    "cat.clothes": "Ropa",
+    "cat.body": "Cuerpo",
+
+    "set.language": "Palabras en",
+    "hint.language": "Las tildes se omiten (á es A, ü es U), pero la ñ es una letra propia y tiene su tecla.",
+    "set.uiLanguage": "Idioma del menú",
+    "hint.uiLanguage": "El idioma de todo este panel. El mismo que las palabras, u otro.",
+    "opt.uiLanguage.auto": "Igual que las palabras",
+    "set.category": "Palabras de",
+    "hint.category": "Todo mezcla todas las listas de tu idioma. Tus palabras lee ~/.config/hangman/words.txt, una palabra o frase por línea, en cualquier idioma.",
+    "set.length": "Longitud de la palabra",
+    "hint.length": "Corta es hasta 6 letras, media de 6 a 9, larga 9 o más.",
+    "opt.length.any": "Cualquiera",
+    "opt.length.short": "Corta",
+    "opt.length.medium": "Media",
+    "opt.length.long": "Larga",
+    "set.lives": "Vidas",
+    "hint.lives": "Letras falladas que puedes permitirte. 6 es el juego clásico.",
+    "set.hints": "Pistas por palabra",
+    "hint.hints": "Una pista muestra una letra oculta y cuesta una vida. Nunca la última.",
+    "set.reveal": "Empezar con una letra",
+    "hint.reveal": "La primera letra de cada palabra ya está puesta.",
+    "set.showCategory": "Pista de categoría",
+    "hint.showCategory": "Muestra encima de la palabra de qué lista viene.",
+    "set.autoNext": "Palabra siguiente enseguida",
+    "hint.autoNext": "Empieza una palabra nueva un momento después de terminar una. Apagado espera a Intro o Palabra nueva.",
+
+    "set.figure": "Dibujo",
+    "hint.figure": "Lo que se llena (o se desmonta) con cada letra fallada.",
+    "opt.figure.gallows": "Horca",
+    "opt.figure.balloons": "Globos",
+    "opt.figure.snowman": "Muñeco de nieve",
+    "opt.figure.hearts": "Corazones",
+    "set.keyboard": "Letras en pantalla",
+    "hint.keyboard": "Las letras en las que puedes hacer clic bajo la palabra. Escribir siempre funciona.",
+    "opt.keyboard.abc": "A a Z",
+    "opt.keyboard.off": "Ocultas",
+    "set.colorMode": "Colores",
+    "hint.colorMode": "Seguir el tema toma tu tema de Omarchy en vivo. Personalizado te deja elegir el fondo, el texto y el acento. Monocromo quita todos los colores.",
+    "opt.colorMode.theme": "Seguir el tema",
+    "opt.colorMode.custom": "Personalizado",
+    "opt.colorMode.monochrome": "Monocromo",
+    "set.customColors": "Colores personalizados",
+    "hint.customColors": "Elige Fondo, Texto o Acento, y luego una muestra o un código hex.",
+    "set.density": "Espaciado",
+    "hint.density": "Cuánto aire hay entre las cosas.",
+    "opt.density.compact": "Compacto",
+    "opt.density.comfortable": "Cómodo",
+    "opt.density.spacious": "Amplio",
+    "set.cornerRadius": "Redondeo",
+    "hint.cornerRadius": "0 es cuadrado, 20 muy redondo.",
+    "set.frame": "Borde de la ventana",
+    "hint.frame": "Dibuja el borde con el color de acento en vez de una línea neutra.",
+    "set.fontScale": "Tamaño del texto",
+    "hint.fontScale": "1 es normal, 1,25 es un cuarto más grande.",
+    "set.surfaceTint": "Tinte de la ventana",
+    "hint.surfaceTint": "Cuánto color de acento se echa sobre el fondo. 0 lo deja liso.",
+    "set.opacity": "Opacidad",
+    "hint.opacity": "El fondo del panel.",
+    "set.speed": "Velocidad de animación",
+    "hint.speed": "Milisegundos que tardan en moverse el dibujo y las letras. 0 apaga las animaciones.",
+
+    "set.windowWidth": "Ancho del panel",
+    "hint.windowWidth": "Lo ancho que se abre el panel.",
+    "set.windowHeight": "Alto del panel",
+    "hint.windowHeight": "Lo alto que se abre el panel.",
+    "set.openAs": "Abrir como",
+    "hint.openAs": "Dónde abre el juego el botón de la barra. Siempre puedes desacoplarlo o acoplarlo desde la cabecera.",
+    "opt.openAs.panel": "Panel de la barra",
+    "opt.openAs.window": "Ventana propia",
+    "set.barDisplay": "El botón muestra",
+    "hint.barDisplay": "La palabra muestra tu progreso (B _ _ G E S) mientras juegas, vidas muestra los corazones que quedan.",
+    "opt.barDisplay.text": "Texto",
+    "opt.barDisplay.word": "La palabra",
+    "opt.barDisplay.lives": "Vidas restantes",
+    "set.barText": "Texto del botón",
+    "hint.barText": "Se usa para el texto, y cuando no hay ninguna palabra en juego.",
+    "set.middleClick": "Clic central",
+    "hint.middleClick": "Qué hace el clic con el botón central en el botón de la barra.",
+    "opt.middleClick.newword": "Palabra nueva",
+    "opt.middleClick.none": "Nada"
 };
 
 // ---------- looking texts up ----------

@@ -1,0 +1,174 @@
+# transport, Spanish. one word or phrase a line
+avión
+aeropuerto
+dirigible
+ambulancia
+ancla
+piloto automático
+eje
+barcaza
+acorazado
+bicicleta
+biplano
+aerostato
+barco
+bobsleigh
+freno
+buldócer
+parachoques
+autobús
+parada de autobús
+cabina
+teleférico
+autocaravana
+barca de canal
+canoa
+coche
+caravana
+carga
+carruaje
+catamarán
+telesilla
+moto chopper
+autocar
+estación de autobuses
+cabina de mando
+revisor
+descapotable
+grúa
+cruce
+encrucijada
+crucero
+barco de crucero
+ciclista
+tablero
+furgoneta de reparto
+diésel
+excavadora
+bote
+muelle
+autobús de dos pisos
+carnet de conducir
+volquete
+coche eléctrico
+motor
+escalera mecánica
+tubo de escape
+tren expreso
+transbordador
+ferri
+coche de bomberos
+camión de bomberos
+montacargas
+flete
+tren de carga
+funicular
+garaje
+caja de cambios
+planeador
+kart
+carrito de golf
+góndola
+telecabina
+manillar
+compacto
+faro
+helicóptero
+autopista
+bocina
+globo aerostático
+aerodeslizador
+hidroala
+rompehielos
+todoterreno
+jet
+moto de agua
+empalme
+kayak
+bote salvavidas
+limusina
+locomotora
+camión
+metro
+microbús
+monovolumen
+monorraíl
+ciclomotor
+motocicleta
+lancha motora
+autovía
+bicicleta de montaña
+bus nocturno
+petrolero
+paso elevado
+vapor de ruedas
+paracaídas
+pasajero
+pedal
+hidropedal
+gasolina
+camioneta
+piloto
+andén
+coche patrulla
+balsa
+riel
+ferrocarril
+bicitaxi
+carretera
+cohete
+bote de remos
+pista de aterrizaje
+velero
+planeador a vela
+autobús escolar
+scooter
+hidroavión
+cinturón de seguridad
+sedán
+buque
+sidecar
+patineta
+trineo motorizado
+trineo
+tren cama
+trineo de caballos
+moto de nieve
+nave espacial
+lancha rápida
+lancha de carreras
+estación
+tren de vapor
+barco de vapor
+volante
+tranvía
+submarino
+ferrocarril subterráneo
+tándem
+buque cisterna
+taxi
+autopista de peaje
+cabina de peaje
+coche grúa
+tractor
+tráfico
+semáforo
+remolque
+tren
+tranvía urbano
+triciclo
+carrito
+camión de carga
+remolcador
+túnel
+neumático
+subterráneo
+monociclo
+furgoneta
+velódromo
+vagón
+buque de guerra
+rueda
+parabrisas
+yate
+zepelín

@@ -1,0 +1,162 @@
+# sports, Spanish. one word or phrase a line
+rápel
+aeróbic
+aikido
+tiro con arco
+atletismo
+autocross
+bádminton
+ballet
+esquí descalzo
+salto base
+béisbol
+baloncesto
+vóley playa
+biatlón
+bobsleigh
+bodyboard
+búlder
+bolos
+boxeo
+breakdance
+puenting
+piragüismo
+capoeira
+espeleología
+animación
+ajedrez
+escalada
+críquet
+croquet
+campo a través
+crossfit
+curling
+ciclismo
+ciclocross
+dardos
+decatlón
+lanzamiento de disco
+salto de trampolín
+balón prisionero
+descenso
+carreras de aceleración
+hípica
+carrera de montaña
+esgrima
+hockey hierba
+patinaje artístico
+pesca
+pesca con mosca
+fútbol
+footgolf
+fórmula uno
+frisbee
+vuelo sin motor
+carreras de karts
+golf
+gimnasia
+lanzamiento de martillo
+balonmano
+heptatlón
+salto de altura
+senderismo
+hockey
+equitación
+vallas
+hurling
+escalada en hielo
+hockey hielo
+patinaje sobre hielo
+jabalina
+moto acuática
+jiu jitsu
+footing
+judo
+karate
+karting
+kayak
+kendo
+kickboxing
+kitesurf
+kung fu
+lacrosse
+láser tag
+salto de longitud
+luge
+maratón
+artes marciales
+minigolf
+motocross
+automovilismo
+ciclismo de montaña
+alpinismo
+muay thai
+netball
+marcha nórdica
+orientación
+paddle surf
+pádel
+paintball
+parapente
+parkour
+pentatlón
+pickleball
+pilates
+salto con pértiga
+polo
+powerlifting
+racquetball
+rafting
+rally
+relevos
+gimnasia rítmica
+escalada en roca
+roller derby
+patinaje sobre ruedas
+rounders
+remo
+rugby
+carrera
+vela
+submarinismo
+tiro
+lanzamiento de peso
+salto ecuestre
+monopatín
+patinaje
+skeleton
+salto de esquí
+esquí
+paracaidismo
+eslalon
+trineo
+snooker
+esnórquel
+snowboard
+sóftbol
+patinaje de velocidad
+spinning
+sprint
+squash
+sumo
+surf
+natación
+natación sincronizada
+tenis de mesa
+taekwondo
+tenis
+trampolín
+triatlón
+tira y afloja
+ultimate
+voleibol
+wakeboard
+caminata
+waterpolo
+esquí acuático
+halterofilia
+rafting de aguas bravas
+windsurf
+lucha
+yoga
+zumba

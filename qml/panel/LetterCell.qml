@@ -1,4 +1,5 @@
 import QtQuick
+import "../js/Game.js" as Game
 import "../controls"
 
 // one slot of the word. pops in when guessed, waves when the word is won,
@@ -13,7 +14,7 @@ Item {
     property string guessed: ""
     property string status: "playing"
 
-    readonly property bool letter: ch >= "A" && ch <= "Z"
+    readonly property bool letter: Game.isLetter(ch)
     readonly property bool shown: !letter || guessed.indexOf(ch) >= 0
     readonly property bool revealed: !shown && status === "lost"
 

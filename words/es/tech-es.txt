@@ -1,0 +1,228 @@
+# tech, Spanish. one word or phrase a line
+punto de acceso
+adaptador
+algoritmo
+android
+antivirus
+aplicación
+archivo
+autocompletar
+avatar
+backend
+copia de seguridad
+ancho de banda
+código de barras
+prueba de rendimiento
+binario
+bit
+tasa de bits
+blog
+bluetooth
+marcador
+arranque
+punto de interrupción
+banda ancha
+navegador
+búfer
+error
+byte
+cable
+caché
+cámara
+captcha
+chatbot
+casilla
+chip
+chipset
+portapapeles
+velocidad de reloj
+nube
+código
+codec
+línea de comandos
+commit
+compilador
+computadora
+contenedor
+cookie
+fallo
+cursor
+ciberseguridad
+modo oscuro
+centro de datos
+base de datos
+interbloqueo
+depurador
+desplegar
+escritorio
+directorio
+dominio
+adaptador usb
+descargar
+controlador
+lista desplegable
+libro electrónico
+correo
+emoji
+emulador
+cifrado
+punto final
+ethernet
+extensión
+favicon
+fibra óptica
+sistema de archivos
+cortafuegos
+firmware
+memoria usb
+carpeta
+fuente
+marco de trabajo
+frontend
+función
+dispositivo
+gigabyte
+tarjeta gráfica
+hacker
+disco duro
+hardware
+etiqueta
+auriculares
+disipador
+página principal
+zona wifi
+hipervínculo
+icono
+bandeja de entrada
+entrada
+interfaz
+internet
+javascript
+joystick
+núcleo
+teclado
+atajo de teclado
+kilobyte
+portátil
+latencia
+biblioteca
+linux
+transmisión en vivo
+cargando
+archivo de registro
+inicio de sesión
+aprendizaje automático
+macro
+servidor central
+malware
+megabyte
+memoria
+menú
+fusionar
+metadatos
+microchip
+micrófono
+modem
+monitor
+placa base
+ratón
+multitarea
+nanosegundo
+red
+notificación
+desconectado
+modo sin conexión
+conectado
+código abierto
+sistema operativo
+overclock
+paquete
+paginación
+partición
+contraseña
+parche
+pendrive
+pixel
+lista de reproducción
+complemento
+podcast
+ventana emergente
+puerto
+fuente de alimentación
+impresora
+procesador
+programa
+proyector
+protocolo
+python
+consulta
+reiniciar
+actualizar
+repositorio
+resolución
+robótica
+enrutador
+tiempo de ejecución
+entorno aislado
+escáner
+pantalla
+salvapantallas
+captura de pantalla
+script
+desplazar
+barra de desplazamiento
+buscador
+selfi
+sensor
+servidor
+sala de servidores
+acceso directo
+barra lateral
+teléfono inteligente
+reloj inteligente
+instantánea
+software
+código fuente
+spam
+altavoz
+hoja de cálculo
+startup
+almacenamiento
+lápiz óptico
+suscripción
+sintaxis
+pestaña
+tableta
+terminal
+editor de texto
+miniatura
+gestor de ventanas
+cronología
+token
+barra de herramientas
+panel táctil
+pantalla táctil
+bola de mando
+superficie táctil
+troyano
+tutorial
+subir
+unidad usb
+interfaz de usuario
+nombre de usuario
+variable
+control de versiones
+video
+máquina virtual
+virus
+buzón de voz
+fondo de pantalla
+cámara web
+página web
+sitio web
+widget
+wifi
+ventana
+inalámbrico
+espacio de trabajo
+archivo zip

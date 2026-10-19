@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "author": "qempexe",
   "license": "MIT",
-  "description": "Hangman in the bar: fifteen word lists in English, French, Dutch and Romanian (menus too), or your own, four drawings (gallows, balloons, snowman, hearts), hints, stats and streaks, keyboard or mouse, and colors that follow your Omarchy theme.",
+  "description": "Hangman in the bar: fifteen word lists in English, French, Dutch, Romanian and Spanish (menus too), or your own, four drawings (gallows, balloons, snowman, hearts), hints, stats and streaks, keyboard or mouse, and colors that follow your Omarchy theme.",
   "kinds": [
     "service",
     "bar-widget"

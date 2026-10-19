@@ -1,0 +1,145 @@
+# space, Spanish. one word or phrase a line
+alienígena
+andrómeda
+afelio
+apolo
+asteroide
+cinturón de asteroides
+astrolabio
+astronauta
+astronomía
+astrofísica
+atmósfera
+aurora
+eje
+acimut
+osa mayor
+estrella binaria
+agujero negro
+blázar
+enana marrón
+calisto
+cápsula
+celeste
+ceres
+caronte
+cromosfera
+cometa
+constelación
+corona
+rayo cósmico
+cosmonauta
+cosmos
+cuenta atrás
+cráter
+materia oscura
+espacio profundo
+acoplamiento
+planeta enano
+eclipse
+equinoccio
+europa
+horizonte de sucesos
+exoplaneta
+exosfera
+galaxia
+ganimedes
+gravedad
+asistencia gravitatoria
+halley
+heliosfera
+casco
+horizonte
+hubble
+interestelar
+io
+motor iónico
+júpiter
+cinturón de kuiper
+módulo de aterrizaje
+lanzamiento
+plataforma de lanzamiento
+velocidad de la luz
+año luz
+lunar
+eclipse lunar
+módulo lunar
+magnetar
+mar lunar
+marte
+mercurio
+meteoro
+lluvia de meteoros
+meteorito
+vía láctea
+control de misión
+luna
+alunizaje
+roca lunar
+luz de luna
+nebulosa
+neptuno
+estrella de neutrones
+estrella polar
+nova
+observatorio
+nube de oort
+órbita
+orbitador
+orión
+carga útil
+perihelio
+fobos
+planetario
+plutón
+sonda
+protoestrella
+púlsar
+cuásar
+radar
+enana roja
+gigante roja
+cohete
+cohete auxiliar
+róver
+satélite
+saturno
+anillos de saturno
+estrella fugaz
+transbordador
+sirio
+erupción solar
+panel solar
+viento solar
+solsticio
+basura espacial
+sonda espacial
+transbordador espacial
+estación espacial
+nave espacial
+nave
+traje espacial
+paseo espacial
+espectrógrafo
+cúmulo estelar
+luz estelar
+astronave
+estratosfera
+sol
+amanecer
+mancha solar
+supernova
+telescopio
+propulsores
+titán
+tritón
+umbra
+universo
+urano
+venus
+vórtice
+enana blanca
+agujero de gusano
+cenit
+ingravidez
+zodiaco

@@ -5,9 +5,9 @@ function namesOf(obj) { const out = []; for (const k in obj) out.push(k); return
 const js = (f) => fs.readFileSync(path.join(__dirname, "..", "qml", "js", f), "utf8")
   .replace(/^\.pragma.*$/m, "").replace(/^\.import.*$/mg, "");
 const Words = new Function(js("Words.js") + "; return { categories, languages, keys, labelOf, clean, parseList, parseCustom, parseBundle, pool, letterCount, fitsLength, toText };")();
-const Game = new Function("Words", js("Game.js") + "; return { touched, pick, start, guess, hint, canHint, cells, masked, state, revive, emptyStats, reviveStats, record, letters };")(Words);
+const Game = new Function("Words", js("Game.js") + "; return { touched, pick, start, guess, hint, canHint, cells, masked, state, revive, emptyStats, reviveStats, record, letters, isLetter, isValidWord };")(Words);
 const Schema = new Function("Words", js("Schema.js") + "; return { groups, defaults, clean, resolve, categoryOptions, isSetting };")(Words);
-const Lang = new Function(js("Lang.js") + "; return { texts, t, tOr, optionLabels };")();
+const Lang = new Function(js("Lang.js") + "; return { texts, t, tOr, optionLabels, languages };")();
 
 let fails = 0;
 function check(c, m) { console.log((c ? "  ok   " : "  FAIL ") + m); if (!c) fails++; }
@@ -15,7 +15,7 @@ function check(c, m) { console.log((c ? "  ok   " : "  FAIL ") + m); if (!c) fai
 console.log("== words");
 const dir = path.join(__dirname, "..", "words");
 const langs = Words.languages.map(l => l.key);
-check(langs.join() === "en,fr,nl,ro", "Words.languages has all four");
+check(langs.join() === "en,fr,nl,ro,es", "Words.languages has all five");
 let total = 0;
 for (const lang of langs) {
   let bundle = "", count = 0;
@@ -24,13 +24,13 @@ for (const lang of langs) {
     check(fs.existsSync(file), "words/" + lang + "/" + key + "-" + lang + ".txt exists");
     const text = fs.readFileSync(file, "utf8");
     const lines = text.split("\n").filter(l => l.trim() && !l.startsWith("#"));
-    const words = Words.parseList(text, 5000);
-    if (words.length !== lines.length) console.log("    dropped in", key, lang, lines.filter(l => !Words.clean(l)));
+    const words = Words.parseList(text, 5000, lang);
+    if (words.length !== lines.length) console.log("    dropped in", key, lang, lines.filter(l => !Words.clean(l, lang)));
     check(words.length === lines.length && words.length >= 50, key + "-" + lang + ": " + words.length + " words, all usable");
     count += words.length;
     bundle += "@@ " + key + "\n" + text + "\n";
   }
-  const lists = Words.parseBundle(bundle + "@@ constructor\nabc\n@@ ../../x\nabc\n");
+  const lists = Words.parseBundle(bundle + "@@ constructor\nabc\n@@ ../../x\nabc\n", lang);
   check(namesOf(lists).length === Words.keys.length, lang + ": bundle parsed, unknown names ignored");
   check(Words.pool("mixed", lists).length === count && Words.pool("food", lists).every(p => p.category === "food"), lang + ": pools");
   console.log("    " + lang + ": " + count + " words");
@@ -49,6 +49,36 @@ check(JSON.stringify(custom.slice(0, 4)) === JSON.stringify(["BRUGES", "NEW YORK
 check(Words.pool("custom", {}, ["ABC"]).length === 1 && Words.pool("custom", {}, []).length === 0, "custom pool");
 check(Words.pool("constructor", { animals: ["CAT"] }).length === 1, "odd category falls back to everything");
 check(Words.fitsLength("CAT", "short") && !Words.fitsLength("ELEPHANT", "short") && Words.fitsLength("NEW YORK", "medium"), "length filter");
+
+// ñ is a letter of its own in Spanish, so año does not become ano
+console.log("== spanish, ñ is a letter");
+check(Words.clean("año", "es") === "AÑO" && Words.clean("ñu", "es") === "ÑU" && Words.clean("Ñandú", "es") === "ÑANDU", "clean keeps ñ for Spanish");
+check(Words.clean("pingüino", "es") === "PINGUINO" && Words.clean("murciélago", "es") === "MURCIELAGO", "clean still folds á é í ó ú ü in Spanish");
+check(Words.clean("an\u0303o", "es") === "AÑO", "clean folds an already decomposed ñ");
+check(Words.clean("año") === "ANO" && Words.clean("año", "fr") === "ANO" && Words.clean("ñu", "nl") === "NU" && Words.clean("ñu", "ro") === "NU", "other languages still fold ñ to N");
+check(Game.isValidWord("AÑO") && !Game.isValidWord("AÑ1") && Game.isLetter("Ñ") && !Game.isLetter("ñ"), "AÑO is a valid word and Ñ is an engine letter");
+check(Game.letters("AÑO") === "AÑO", "letters() sees Ñ");
+check(Words.letterCount("AÑO") === 3, "letterCount counts Ñ");
+const esGame = Game.start({ word: "AÑO", category: "nature" }, { lives: 6, hints: 1 }, 0);
+check(Game.cells(esGame).filter(c => c.ch === "Ñ").every(c => c.letter && !c.shown), "the Ñ cell starts hidden, not given away");
+check(Game.guess(esGame, "Ñ").guessed === "Ñ", "guessing Ñ reveals the cell");
+check(Game.hint(Game.start({ word: "ÑU", category: "animals" }, { lives: 6, hints: 1 }), () => 0).guessed === "Ñ", "a hint can reveal Ñ");
+const esSave = Game.revive({ word: "AÑO", guessed: "AÑO", category: "nature" });
+check(esSave && esSave.guessed === "AÑO" && esSave.status === "won", "a saved Ñ game comes back");
+const esWide = Game.revive({ word: "AÑO", guessed: "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" });
+check(esWide && esWide.guessed.length === 27, "revive accepts 27 guessed letters");
+check(JSON.stringify(Words.parseList("año\nano", 5000, "es")) === JSON.stringify(["AÑO", "ANO"]), "año and ano stay two words in Spanish");
+check(JSON.stringify(Words.parseList("año\nano", 5000)) === JSON.stringify(["ANO"]), "año and ano still fold together elsewhere");
+// the UI keeps ñ out of an English game; at engine level it is an ordinary miss
+check(Game.guess(Game.start({ word: "CAT", category: "animals" }, {}), "Ñ").wrong === 1, "Ñ on an English word is just a wrong letter");
+// the invariant behind all of it: only the exact "es" changes anything
+for (const lang of ["fr", "nl", "ro"]) {
+  for (const w of ["año", "ñu", "pingüino", "Brașov", "bœuf", "Straße", "Brașov"])
+    check(Words.clean(w, lang) === Words.clean(w), "clean(" + w + ", " + lang + ") is the same as clean(" + w + ")");
+}
+check(Words.clean("año", "ES") === "ANO" && Words.clean("año", "es ") === "ANO" && Words.clean("\uE000o", "es") === "", "only the exact \"es\" keeps ñ, and a stray placeholder is not a letter");
+check(Game.revive({ word: "CAT", guessed: "ABCDEFGHIJKLMNOPQRSTUVWXY" }).guessed.length === 25
+  && Game.revive({ word: "CAT", guessed: "ABCDEFGHIJKLMNOPQRSTUVWXYZ" }).guessed.length === 26, "a plain A-Z save is untouched by the longer cap");
 
 console.log("== game");
 let g = Game.start({ word: "NEW YORK", category: "cities" }, { lives: 3, hints: 1 }, 5);
@@ -123,7 +153,7 @@ check(Game.start({ word: "CAT", category: "x" }, { lives: "x" }).lives === 6, "b
 
 console.log("== texts");
 const en = namesOf(Lang.texts.en);
-for (const l of ["fr", "nl", "ro"]) {
+for (const l of Words.languages.map(l => l.key).filter(l => l !== "en")) {
   const missing = en.filter(k => !(k in Lang.texts[l]));
   const extra = namesOf(Lang.texts[l]).filter(k => !(k in Lang.texts.en));
   check(missing.length === 0 && extra.length === 0, l + " has every text " + missing.concat(extra).join(","));
@@ -140,8 +170,22 @@ for (const g of Schema.groups) {
 }
 for (const k of Words.keys) if (!("cat." + k in Lang.texts.en)) noText.push("cat." + k);
 check(noText.length === 0, "every setting and category has its texts " + noText.join(","));
+// the {0}/{1} are part of the contract, not just the set of keys
+for (const k of en) check((Lang.texts.en[k].match(/\{\d\}/g) || []).join() === (Lang.texts.es[k].match(/\{\d\}/g) || []).join(), "the Spanish text for " + k + " keeps the placeholders");
 check(Lang.t("fr", "head.won", 3, 5) === "3 sur 5 gagnés" && Lang.t("de", "tab.play") === "Play" && Lang.t("ro", "nope") === "nope", "t() fills in, falls back");
 check(Lang.optionLabels("nl", "length", ["short"], {}).short === "Kort" && Lang.optionLabels("ro", "category", ["food"], {}).food === "Mâncare", "option labels translated");
+check(Lang.t("es", "game") === "El ahorcado", "the game is El ahorcado in Spanish");
+
+// a language has to be added in four places or the settings and the panel disagree
+console.log("== registries");
+const wordsLangs = Words.languages.map(l => l.key);
+const rows = Schema.groups[0].items;
+const optionsOf = (key) => rows.find(i => i.key === key).options;
+check(wordsLangs.join() === Lang.languages.join(), "Words.languages and Lang.languages agree: " + wordsLangs.join());
+check(wordsLangs.join() === optionsOf("language").join(), "language options agree: " + optionsOf("language").join());
+check(optionsOf("uiLanguage").join() === ["auto"].concat(wordsLangs).join(), "uiLanguage is auto plus every language: " + optionsOf("uiLanguage").join());
+check(Schema.resolve({ language: "es" }).language === "es" && Schema.resolve({ uiLanguage: "es" }).uiLanguage === "es", "Spanish is a real value for both settings");
+check(Schema.resolve({ language: "de" }).language === "en", "an unknown language still falls back");
 
 console.log(fails ? "\nFAILURES: " + fails : "\nALL OK");
 process.exit(fails ? 1 : 0);

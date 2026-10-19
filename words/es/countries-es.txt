@@ -1,0 +1,207 @@
+# countries, Spanish. one word or phrase a line
+afganistán
+albania
+argelia
+andorra
+angola
+antigua
+antigua y barbuda
+argentina
+armenia
+australia
+austria
+azerbaiyán
+bahamas
+baréin
+bangladés
+barbados
+bielorrusia
+bélgica
+belice
+benín
+bután
+bolivia
+bosnia y herzegovina
+botsuana
+brasil
+brunéi
+bulgaria
+burkina faso
+burundi
+camboya
+camerún
+canadá
+cabo verde
+república centroafricana
+chad
+chile
+china
+colombia
+comoras
+congo
+costa rica
+croacia
+cuba
+chipre
+chequia
+dinamarca
+yibuti
+dominica
+república dominicana
+timor oriental
+ecuador
+egipto
+el salvador
+inglaterra
+guinea ecuatorial
+eritrea
+estonia
+esuatini
+etiopía
+islas feroe
+fiyi
+finlandia
+francia
+guayana francesa
+gabón
+gambia
+georgia
+alemania
+ghana
+gibraltar
+grecia
+groenlandia
+granada
+guatemala
+guinea
+guyana
+haití
+honduras
+hong kong
+hungría
+islandia
+india
+indonesia
+irán
+irak
+irlanda
+israel
+italia
+costa de marfil
+jamaica
+japón
+jordania
+kazajistán
+kenia
+kiribati
+kosovo
+kuwait
+kirguistán
+laos
+letonia
+líbano
+lesoto
+liberia
+libia
+liechtenstein
+lituania
+luxemburgo
+macao
+madagascar
+malaui
+malasia
+maldivas
+malí
+malta
+islas marshall
+mauritania
+mauricio
+méxico
+micronesia
+moldavia
+mónaco
+mongolia
+montenegro
+marruecos
+mozambique
+myanmar
+namibia
+nauru
+nepal
+países bajos
+nueva caledonia
+nueva zelanda
+nicaragua
+níger
+nigeria
+corea del norte
+macedonia del norte
+irlanda del norte
+noruega
+omán
+pakistán
+palau
+panamá
+papúa nueva guinea
+paraguay
+perú
+filipinas
+polonia
+portugal
+puerto rico
+catar
+rumanía
+rusia
+ruanda
+san cristóbal y nieves
+santa lucía
+samoa
+san marino
+arabia saudita
+escocia
+senegal
+serbia
+seychelles
+sierra leona
+singapur
+eslovaquia
+eslovenia
+islas salomón
+somalia
+sudáfrica
+corea del sur
+sudán del sur
+españa
+sri lanka
+sudán
+surinam
+suecia
+suiza
+siria
+taiwán
+tayikistán
+tanzania
+tailandia
+togo
+tonga
+trinidad y tobago
+túnez
+turquía
+turkmenistán
+tuvalu
+uganda
+ucrania
+emiratos árabes unidos
+reino unido
+estados unidos
+uruguay
+uzbekistán
+vanuatu
+ciudad del vaticano
+venezuela
+vietnam
+gales
+sahara occidental
+yemen
+zambia
+zimbabue
