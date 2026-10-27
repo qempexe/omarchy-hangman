@@ -16,17 +16,17 @@ Item {
     readonly property int group: ui ? Math.max(0, Math.min(Schema.groups.length - 1, ui.settingsGroup)) : 0
 
     function val(key) {
-        var it = Schema.itemByKey[key]
+        const it = Schema.itemByKey[key]
         if (it && it.kind === "palette") {
-            var o = {}
-            for (var i = 0; i < it.targets.length; i++) o[it.targets[i].key] = val(it.targets[i].key)
+            const o = {}
+            for (let i = 0; i < it.targets.length; i++) o[it.targets[i].key] = val(it.targets[i].key)
             return o
         }
         return svc && svc.cfg && svc.cfg[key] !== undefined ? svc.cfg[key] : Schema.defaults[key]
     }
 
     function same(item) {
-        var v = val(item.key)
+        const v = val(item.key)
         return item.kind === "palette" ? JSON.stringify(v) === JSON.stringify(item.fallback) : Words.toText(v) === Words.toText(item.fallback)
     }
 
@@ -37,8 +37,8 @@ Item {
 
     function dimmed(item) {
         if (!item.when) return false
-        for (var i = 0; i < item.when.length; i++) {
-            var c = item.when[i]
+        for (let i = 0; i < item.when.length; i++) {
+            const c = item.when[i]
             if (c.is.indexOf(Words.toText(val(c.key))) < 0) return true
         }
         return false
@@ -50,19 +50,19 @@ Item {
     function labelOf(item) { return Lang.tOr(ui.lang, "set." + item.key, item.label) }
     function hintOf(item) { return Lang.tOr(ui.lang, "hint." + item.key, item.hint || "") }
     function targetsOf(item) {
-        var list = []
-        var targets = item.targets || []
-        for (var i = 0; i < targets.length; i++)
+        const list = []
+        const targets = item.targets || []
+        for (let i = 0; i < targets.length; i++)
             list.push({ key: targets[i].key, label: Lang.tOr(ui.lang, "color." + targets[i].key, targets[i].label) })
         return list
     }
 
     // count of changed settings (footer)
     readonly property int changed: {
-        var n = 0
-        for (var g = 0; g < Schema.groups.length; g++) {
-            var items = Schema.groups[g].items
-            for (var i = 0; i < items.length; i++)
+        let n = 0
+        for (let g = 0; g < Schema.groups.length; g++) {
+            const items = Schema.groups[g].items
+            for (let i = 0; i < items.length; i++)
                 if (!same(items[i])) n++
         }
         return n
@@ -204,8 +204,8 @@ Item {
                                     if (root.offHere(modelData) || !root.svc) return
                                     if (modelData.kind === "palette") {
                                         if (v && v.reset) {
-                                            for (var i = 0; i < modelData.targets.length; i++) {
-                                                var k = modelData.targets[i].key
+                                            for (let i = 0; i < modelData.targets.length; i++) {
+                                                const k = modelData.targets[i].key
                                                 root.svc.setValue(k, modelData.fallback[k])
                                             }
                                         } else if (v && v.key) root.svc.setValue(v.key, v.value)

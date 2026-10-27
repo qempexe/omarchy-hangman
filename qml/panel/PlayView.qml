@@ -28,7 +28,7 @@ Item {
             root.svc.newWord(); e.accepted = true; return
         }
         if (e.text === "?") { root.svc.useHint(); e.accepted = true; return }
-        var t = Words.toText(e.text).toUpperCase()
+        const t = Words.toText(e.text).toUpperCase()
         if (t.length === 1 && Game.isLetter(t) && (t !== "Ñ" || root.enie)) { root.svc.guess(t); e.accepted = true }
     }
 
@@ -118,9 +118,9 @@ Item {
             implicitHeight: wordFlow.implicitHeight
             readonly property int longest: {
                 if (!root.game) return 1
-                var parts = root.game.word.split(" ")
-                var m = 1
-                for (var i = 0; i < parts.length; i++) m = Math.max(m, parts[i].length)
+                const parts = root.game.word.split(" ")
+                let m = 1
+                for (let i = 0; i < parts.length; i++) m = Math.max(m, parts[i].length)
                 return Math.max(m, Math.min(root.game.word.length, 12))
             }
             readonly property real cell: Math.max(ui.px(14), Math.min(ui.px(36), (width - ui.px(8)) / longest - ui.px(6)))
@@ -140,9 +140,9 @@ Item {
                         required property int index
                         // where this word starts in the whole phrase
                         readonly property int offset: {
-                            var parts = root.game.word.split(" ")
-                            var n = 0
-                            for (var i = 0; i < index; i++) n += parts[i].length + 1
+                            const parts = root.game.word.split(" ")
+                            let n = 0
+                            for (let i = 0; i < index; i++) n += parts[i].length + 1
                             return n
                         }
                         spacing: ui.px(6)

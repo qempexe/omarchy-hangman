@@ -26,7 +26,7 @@ Item {
     readonly property var cfg: Schema.resolve(settingsStore.values)
 
     function setValue(key, value) {
-        var v = Schema.clean(key, value)
+        const v = Schema.clean(key, value)
         if (v !== undefined) settingsStore.set(key, v)
     }
 
@@ -57,8 +57,8 @@ Item {
     property int lastMiss: 0
 
     function wordsFor(choice) {
-        var all = Words.pool(choice, root.lists, root.customWords)
-        var fit = all.filter(function(p) { return Words.fitsLength(p.word, root.cfg.length) })
+        const all = Words.pool(choice, root.lists, root.customWords)
+        const fit = all.filter(p => Words.fitsLength(p.word, root.cfg.length))
         return fit.length > 0 ? fit : all
     }
 
@@ -69,10 +69,10 @@ Item {
         if (!root.listsReady) { root.wantWord = true; return }
         root.wantWord = false
         if (root.cfg.category === "custom") readCustom()
-        var choice = root.cfg.category === "custom" && root.customWords.length === 0 ? "mixed" : root.cfg.category
+        const choice = root.cfg.category === "custom" && root.customWords.length === 0 ? "mixed" : root.cfg.category
         if (root.playing && Game.touched(root.game)) giveUp()
-        var recent = root.stats.recent.map(function(r) { return r.word })
-        var entry = Game.pick(wordsFor(choice), recent, Math.random)
+        const recent = root.stats.recent.map(r => r.word)
+        const entry = Game.pick(wordsFor(choice), recent, Math.random)
         if (!entry) return
         autoNext.stop()
         gameStore.game = Game.start(entry, { lives: root.cfg.lives, hints: root.cfg.hints, reveal: root.cfg.reveal }, Date.now())
@@ -80,7 +80,7 @@ Item {
     }
 
     function apply(next) {
-        var before = root.game
+        const before = root.game
         if (next === before) return
         gameStore.game = next
         if (next.wrong > before.wrong) root.lastMiss++
@@ -98,7 +98,7 @@ Item {
 
     function giveUp() {
         if (!root.playing) return
-        var g = Game.revive(root.game)
+        const g = Game.revive(root.game)
         g.wrong = g.lives
         g.status = "lost"
         gameStore.game = g
@@ -137,7 +137,7 @@ Item {
             "sh", root.wordsDir, lang]
         stdout: StdioCollector {
             onStreamFinished: {
-                var switched = root.listsLanguage !== "" && root.listsLanguage !== listsReader.lang
+                const switched = root.listsLanguage !== "" && root.listsLanguage !== listsReader.lang
                 root.lists = Words.parseBundle(text, listsReader.lang)
                 root.listsLanguage = listsReader.lang
                 root.listsReady = true
@@ -145,7 +145,7 @@ Item {
                 // your own words live in another file, that read does the swap instead,
                 // unless the list is empty: then the game falls back to every list, which
                 // is exactly what this read just replaced
-                var customWords = root.cfg.category === "custom" && root.customWords.length > 0
+                const customWords = root.cfg.category === "custom" && root.customWords.length > 0
                 if (switched && !customWords && root.playing && !Game.touched(root.game))
                     Qt.callLater(root.newWord)
             }
@@ -176,7 +176,7 @@ Item {
         stdout: StdioCollector {
             onStreamFinished: {
                 // ñ survives in a Spanish list, so the file is cleaned for the language in play now
-                var switched = wordsReader.lang !== "" && wordsReader.lang !== root.cfg.language
+                const switched = wordsReader.lang !== "" && wordsReader.lang !== root.cfg.language
                 root.customWords = Words.parseCustom(text, root.cfg.language)
                 wordsReader.lang = root.cfg.language
                 // switched to your words, or switched language on your own words: swap the word, if untouched
@@ -190,8 +190,8 @@ Item {
 
     // bar text
     readonly property string barLabel: {
-        var c = root.cfg
-        var g = root.game
+        const c = root.cfg
+        const g = root.game
         if (c.barDisplay === "word" && g && root.playing) return Game.masked(g)
         if (c.barDisplay === "lives" && g && root.playing)
             return "♥ " + (g.lives - g.wrong) + "/" + g.lives
@@ -206,7 +206,7 @@ Item {
         function settings(): string { root.ui.tabRequested("settings", true); return "ok" }
         function next(): string { root.newWord(); return root.game ? Game.masked(root.game) : "no words" }
         function status(): string {
-            var g = root.game
+            const g = root.game
             return JSON.stringify({
                 word: g ? Game.masked(g) : "",
                 status: g ? g.status : "",

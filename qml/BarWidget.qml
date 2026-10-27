@@ -35,9 +35,9 @@ BarWidget {
     readonly property string label: svc ? svc.barLabel : "Hangman"
     readonly property string tooltip: {
         if (!svc) return "Hangman"
-        var ui = svc.ui
-        var s = svc.stats
-        var text = ui.t("game") + ": " + ui.t("head.won", s.won, s.played)
+        const ui = svc.ui
+        const s = svc.stats
+        let text = ui.t("game") + ": " + ui.t("head.won", s.won, s.played)
         if (s.streak > 1) text += " · " + ui.t("head.streak", s.streak)
         return text + "\n" + ui.t("bar.help")
     }
@@ -55,7 +55,7 @@ BarWidget {
     // "open as" wins until someone uses pop out / dock in the header
     function chooseMode() {
         if (userPicked || !cfg) return
-        var want = cfg.openAs === "window"
+        const want = cfg.openAs === "window"
         if (want === popped) return
         if (windowShown) hideWindow()
         if (panelOpened) closePanel()
@@ -168,7 +168,7 @@ BarWidget {
         function onTabRequested(name, toggle) {
             if (!root.ux.host) root.ux.host = root
             if (root.ux.host !== root) return
-            var shown = root.panelOpened || root.windowShown
+            const shown = root.panelOpened || root.windowShown
             if (toggle && shown && root.ux.tabName === name) root.close()
             else root.showTab(name)
         }

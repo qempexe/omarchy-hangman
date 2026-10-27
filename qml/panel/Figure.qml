@@ -44,7 +44,7 @@ Canvas {
     function clamp01(v) { return Math.max(0, Math.min(1, v)) }
 
     onPaint: {
-        var ctx = getContext("2d")
+        const ctx = getContext("2d")
         ctx.reset()
         if (width < 4 || height < 4) return
         ctx.lineCap = "round"
@@ -66,11 +66,11 @@ Canvas {
     }
 
     function drawGallows(ctx) {
-        var s = Math.min(width / 1.0, height / 1.15)
-        var ox = (width - s) / 2, oy = (height - s * 1.15) / 2
+        const s = Math.min(width / 1.0, height / 1.15)
+        const ox = (width - s) / 2, oy = (height - s * 1.15) / 2
         function X(v) { return ox + v * s }
         function Y(v) { return oy + v * s }
-        var w = Math.max(2, s * 0.028)
+        const w = Math.max(2, s * 0.028)
 
         ctx.lineWidth = w
         ctx.strokeStyle = rgba(ink, 0.55)
@@ -82,14 +82,14 @@ Canvas {
         line(ctx, X(0.70), Y(0.08), X(0.70), Y(0.22), 1)       // rope
 
         // 6 parts spread over however many lives there are
-        var parts = lost * 6
-        var dead = status === "lost"
-        var col = dead ? bad : (status === "won" ? accent : ink)
-        var lift = status === "won" ? -bob * s * 0.02 : 0
+        const parts = lost * 6
+        const dead = status === "lost"
+        const col = dead ? bad : (status === "won" ? accent : ink)
+        const lift = status === "won" ? -bob * s * 0.02 : 0
         ctx.strokeStyle = col
         ctx.lineWidth = w
-        var hx = X(0.70), hy = Y(0.30) + lift, hr = s * 0.08
-        var t = clamp01(parts)
+        const hx = X(0.70), hy = Y(0.30) + lift, hr = s * 0.08
+        const t = clamp01(parts)
         if (t > 0) {                                             // head
             ctx.beginPath()
             ctx.arc(hx, hy, hr, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * t, false)
@@ -109,16 +109,16 @@ Canvas {
         ctx.lineWidth = Math.max(1.2, r * 0.16)
         ctx.strokeStyle = col
         ctx.fillStyle = col
-        var ex = r * 0.38, ey = -r * 0.18
+        const ex = r * 0.38, ey = -r * 0.18
         if (kind === "x") {
-            var k = r * 0.16
-            for (var side = -1; side <= 1; side += 2) {
+            const k = r * 0.16
+            for (let side = -1; side <= 1; side += 2) {
                 line(ctx, cx + side * ex - k, cy + ey - k, cx + side * ex + k, cy + ey + k, 1)
                 line(ctx, cx + side * ex + k, cy + ey - k, cx + side * ex - k, cy + ey + k, 1)
             }
             line(ctx, cx - r * 0.3, cy + r * 0.42, cx + r * 0.3, cy + r * 0.42, 1)
         } else {
-            for (var s2 = -1; s2 <= 1; s2 += 2) {
+            for (let s2 = -1; s2 <= 1; s2 += 2) {
                 ctx.beginPath(); ctx.arc(cx + s2 * ex, cy + ey, Math.max(1, r * 0.1), 0, Math.PI * 2); ctx.fill()
             }
             ctx.beginPath()
@@ -132,26 +132,26 @@ Canvas {
     // ---- balloons: one per life, a wrong letter pops one
 
     function drawBalloons(ctx) {
-        var n = Math.max(1, lives)
-        var s = Math.min(width, height * 0.95)
-        var cx = width / 2
-        var dead = status === "lost"
-        var drop = dead ? clamp01(shown - lives + 1) * height * 0.12 : 0
-        var by = height * 0.82 + drop - (status === "won" ? bob * s * 0.03 : 0)    // basket
-        var bw = s * 0.16, bh = s * 0.1
-        var top = height * 0.06
-        var r = Math.min(s * 0.11, (width * 0.86) / (n * 1.25) * 0.9)
-        for (var i = 0; i < n; i++) {
-            var popped = clamp01(shown - (n - 1 - i))      // the right-most ones go first
+        const n = Math.max(1, lives)
+        const s = Math.min(width, height * 0.95)
+        const cx = width / 2
+        const dead = status === "lost"
+        const drop = dead ? clamp01(shown - lives + 1) * height * 0.12 : 0
+        const by = height * 0.82 + drop - (status === "won" ? bob * s * 0.03 : 0)    // basket
+        const bw = s * 0.16, bh = s * 0.1
+        const top = height * 0.06
+        const r = Math.min(s * 0.11, (width * 0.86) / (n * 1.25) * 0.9)
+        for (let i = 0; i < n; i++) {
+            const popped = clamp01(shown - (n - 1 - i))      // the right-most ones go first
             if (popped >= 1) continue
-            var fx = n === 1 ? 0.5 : i / (n - 1)
-            var bx = cx + (fx - 0.5) * Math.min(width * 0.78, n * r * 2.3)
-            var yy = top + r + (i % 2) * r * 0.55 + (status === "won" ? Math.sin(i + bob * 3) * r * 0.08 : 0)
-            var hue = ui && ui.mono ? 0 : (i * 0.13) % 1
-            var col = ui && ui.mono ? rgba(ink, 0.8)
+            const fx = n === 1 ? 0.5 : i / (n - 1)
+            const bx = cx + (fx - 0.5) * Math.min(width * 0.78, n * r * 2.3)
+            const yy = top + r + (i % 2) * r * 0.55 + (status === "won" ? Math.sin(i + bob * 3) * r * 0.08 : 0)
+            const hue = ui && ui.mono ? 0 : (i * 0.13) % 1
+            const col = ui && ui.mono ? rgba(ink, 0.8)
                 : Qt.hsla((accent.hslHue + hue) % 1, Math.max(0.45, accent.hslSaturation), Math.min(0.7, Math.max(0.45, accent.hslLightness)), 1)
-            var sc = 1 + popped * 0.5
-            var a = 1 - popped
+            const sc = 1 + popped * 0.5
+            const a = 1 - popped
             ctx.globalAlpha = a
             ctx.strokeStyle = rgba(ink, 0.45)
             ctx.lineWidth = 1
@@ -170,7 +170,7 @@ Canvas {
             ctx.globalAlpha = 1
         }
         // basket + a little passenger
-        var col2 = dead ? bad : ink
+        const col2 = dead ? bad : ink
         ctx.strokeStyle = col2
         ctx.lineWidth = Math.max(1.5, s * 0.014)
         ctx.strokeRect(cx - bw / 2, by - bh / 2, bw, bh)
@@ -189,22 +189,22 @@ Canvas {
     // ---- snowman: melts a bit with every wrong letter
 
     function drawSnowman(ctx) {
-        var s = Math.min(width, height)
-        var cx = width / 2
-        var ground = height * 0.92
-        var p = lost
-        var squash = 1 - 0.72 * p
-        var col = status === "lost" ? bad : ink
-        var won = status === "won"
+        const s = Math.min(width, height)
+        const cx = width / 2
+        const ground = height * 0.92
+        const p = lost
+        const squash = 1 - 0.72 * p
+        const col = status === "lost" ? bad : ink
+        const won = status === "won"
 
         // sun, it gets bigger as things go wrong
         ctx.fillStyle = rgba(accent, 0.85)
-        var sr = s * (0.05 + 0.05 * p)
+        const sr = s * (0.05 + 0.05 * p)
         ctx.beginPath(); ctx.arc(width * 0.84, height * 0.14, sr, 0, Math.PI * 2); ctx.fill()
         ctx.strokeStyle = rgba(accent, 0.6)
         ctx.lineWidth = Math.max(1, s * 0.01)
-        for (var k = 0; k < 8; k++) {
-            var ang = k * Math.PI / 4 + (won ? bob * 0.4 : 0)
+        for (let k = 0; k < 8; k++) {
+            const ang = k * Math.PI / 4 + (won ? bob * 0.4 : 0)
             line(ctx, width * 0.84 + Math.cos(ang) * sr * 1.35, height * 0.14 + Math.sin(ang) * sr * 1.35,
                       width * 0.84 + Math.cos(ang) * sr * 1.8, height * 0.14 + Math.sin(ang) * sr * 1.8, 1)
         }
@@ -215,26 +215,26 @@ Canvas {
         ctx.ellipse(cx - s * (0.2 + 0.18 * p), ground - s * 0.03, s * (0.4 + 0.36 * p), s * 0.06)
         ctx.fill()
 
-        var r1 = s * 0.17, r2 = s * 0.125, r3 = s * 0.09
-        var y1 = ground - r1 * squash
-        var y2 = y1 - (r1 + r2 * 0.92) * squash
-        var y3 = y2 - (r2 + r3 * 0.92) * squash - (won ? bob * s * 0.015 : 0)
+        const r1 = s * 0.17, r2 = s * 0.125, r3 = s * 0.09
+        const y1 = ground - r1 * squash
+        const y2 = y1 - (r1 + r2 * 0.92) * squash
+        const y3 = y2 - (r2 + r3 * 0.92) * squash - (won ? bob * s * 0.015 : 0)
         ctx.lineWidth = Math.max(1.5, s * 0.016)
         ctx.strokeStyle = col
         ctx.fillStyle = rgba(ink, 0.08)
-        var balls = [[y1, r1], [y2, r2], [y3, r3]]
-        for (var b = 0; b < 3; b++) {
+        const balls = [[y1, r1], [y2, r2], [y3, r3]]
+        for (let b = 0; b < 3; b++) {
             ctx.beginPath()
             ctx.ellipse(cx - balls[b][1], balls[b][0] - balls[b][1] * squash, balls[b][1] * 2, balls[b][1] * 2 * squash)
             ctx.fill(); ctx.stroke()
         }
         // things fall off in this order
-        var keep = function(at) { return clamp01((at - p) * 6) }
-        var a
+        const keep = at => clamp01((at - p) * 6)
+        let a
         if ((a = keep(0.2)) > 0) {          // hat
             ctx.globalAlpha = a
             ctx.fillStyle = col
-            var hy = y3 - r3 * 2 * squash + r3 * 0.25 - (1 - a) * s * 0.1
+            const hy = y3 - r3 * 2 * squash + r3 * 0.25 - (1 - a) * s * 0.1
             ctx.fillRect(cx - r3 * 0.9, hy - s * 0.012, r3 * 1.8, s * 0.024)
             ctx.fillRect(cx - r3 * 0.55, hy - r3 * 1.1, r3 * 1.1, r3 * 1.1)
             ctx.fillStyle = accent
@@ -253,16 +253,16 @@ Canvas {
         if ((a = keep(0.72)) > 0) {         // nose
             ctx.globalAlpha = a
             ctx.fillStyle = ui && ui.mono ? col : Qt.rgba(0.95, 0.55, 0.2, 1)
-            var ny = y3 - r3 * squash
+            const ny = y3 - r3 * squash
             ctx.beginPath(); ctx.moveTo(cx, ny - r3 * 0.12); ctx.lineTo(cx + r3 * 0.9, ny); ctx.lineTo(cx, ny + r3 * 0.12); ctx.fill()
         }
         ctx.globalAlpha = 1
         if (p < 0.9) {                      // eyes + buttons
             ctx.fillStyle = col
-            var ey = y3 - r3 * 1.3 * squash
+            const ey = y3 - r3 * 1.3 * squash
             ctx.beginPath(); ctx.arc(cx - r3 * 0.35, ey, Math.max(1, s * 0.011), 0, Math.PI * 2); ctx.fill()
             ctx.beginPath(); ctx.arc(cx + r3 * 0.35, ey, Math.max(1, s * 0.011), 0, Math.PI * 2); ctx.fill()
-            for (var bt = 0; bt < 3; bt++) {
+            for (let bt = 0; bt < 3; bt++) {
                 ctx.beginPath(); ctx.arc(cx, y2 - r2 * (0.5 + bt * 0.5) * squash, Math.max(1, s * 0.012), 0, Math.PI * 2); ctx.fill()
             }
         }
@@ -281,19 +281,19 @@ Canvas {
     }
 
     function drawHearts(ctx) {
-        var n = Math.max(1, lives)
-        var cols = n <= 5 ? n : Math.ceil(n / 2)
-        var rows = Math.ceil(n / cols)
-        var cell = Math.min(width / cols, height / rows / 1.15)
-        var r = cell * 0.36
-        var ox = (width - cols * cell) / 2, oy = (height - rows * cell * 1.15) / 2
-        for (var i = 0; i < n; i++) {
-            var row = Math.floor(i / cols), c = i % cols
-            var inRow = Math.min(cols, n - row * cols)
-            var x = ox + (c + 0.5) * cell + (cols - inRow) * cell / 2
-            var y = oy + row * cell * 1.15 + cell * 0.3
-            var gone = clamp01(shown - (n - 1 - i))
-            var beat = status === "won" ? 1 + bob * 0.08 : 1
+        const n = Math.max(1, lives)
+        const cols = n <= 5 ? n : Math.ceil(n / 2)
+        const rows = Math.ceil(n / cols)
+        const cell = Math.min(width / cols, height / rows / 1.15)
+        const r = cell * 0.36
+        const ox = (width - cols * cell) / 2, oy = (height - rows * cell * 1.15) / 2
+        for (let i = 0; i < n; i++) {
+            const row = Math.floor(i / cols), c = i % cols
+            const inRow = Math.min(cols, n - row * cols)
+            const x = ox + (c + 0.5) * cell + (cols - inRow) * cell / 2
+            const y = oy + row * cell * 1.15 + cell * 0.3
+            const gone = clamp01(shown - (n - 1 - i))
+            const beat = status === "won" ? 1 + bob * 0.08 : 1
             ctx.lineWidth = Math.max(1.2, r * 0.12)
             ctx.strokeStyle = status === "lost" ? rgba(bad, 0.7) : rgba(ink, 0.35)
             heart(ctx, x, y - r * (beat - 1), r * beat)
@@ -301,7 +301,7 @@ Canvas {
             if (gone < 1) {
                 ctx.globalAlpha = 1 - gone
                 ctx.fillStyle = accent
-                var rr = r * beat * (1 - gone * 0.4)
+                const rr = r * beat * (1 - gone * 0.4)
                 heart(ctx, x, y + (r - rr) * 0.6, rr)
                 ctx.fill()
                 ctx.globalAlpha = 1

@@ -36,14 +36,14 @@ Item {
 
     function readText(fv) {
         try {
-            var t = typeof fv.text === "function" ? fv.text() : fv.text
+            const t = typeof fv.text === "function" ? fv.text() : fv.text
             return typeof t === "string" ? t : ""
         } catch (e) { return "" }
     }
 
     function absorb(text) {
         if (loaded) return
-        var o = null
+        let o = null
         try { o = JSON.parse(text || "{}") } catch (e) { o = null }
         if (o && typeof o === "object" && !Array.isArray(o)) {
             // anything set before the file came in wins

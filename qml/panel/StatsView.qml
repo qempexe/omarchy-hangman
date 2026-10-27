@@ -20,9 +20,9 @@ Item {
     Timer { id: confirmTimer; interval: 2500; onTriggered: root.confirmReset = false }
 
     readonly property var tiles: {
-        var s = root.stats
+        const s = root.stats
         if (!s) return []
-        var rate = s.played > 0 ? Math.round(s.won / s.played * 100) + "%" : "–"
+        const rate = s.played > 0 ? Math.round(s.won / s.played * 100) + "%" : "–"
         return [
             { value: "" + s.played, label: ui.t("stats.played") },
             { value: rate, label: ui.t("stats.won") },
@@ -33,14 +33,14 @@ Item {
     }
 
     readonly property var cats: {
-        var s = root.stats
+        const s = root.stats
         if (!s) return []
-        var out = []
-        for (var k in s.byCategory) {
-            var c = s.byCategory[k]
+        const out = []
+        for (const k in s.byCategory) {
+            const c = s.byCategory[k]
             if (c.played > 0) out.push({ key: k, label: ui.t("cat." + k), played: c.played, won: c.won })
         }
-        out.sort(function(a, b) { return b.played - a.played || a.label.localeCompare(b.label) })
+        out.sort((a, b) => b.played - a.played || a.label.localeCompare(b.label))
         return out
     }
 

@@ -102,8 +102,8 @@ Item {
                         elide: Text.ElideRight
                         text: {
                             if (!view.svc) return ui.t("head.starting")
-                            var st = view.svc.stats
-                            var s = ui.t("head.won", st.won, st.played)
+                            const st = view.svc.stats
+                            let s = ui.t("head.won", st.won, st.played)
                             if (st.streak > 0) s += "  ·  " + ui.t("head.streak", st.streak)
                             if (st.best > 1) s += "  ·  " + ui.t("head.best", st.best)
                             return s
