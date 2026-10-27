@@ -93,7 +93,7 @@ texts.en = {
     "cat.body": "Body",
 
     "set.language": "Words in",
-    "hint.language": "Which language the words are in. Accents are left out, so é is just E and ș is S.",
+    "hint.language": "Which language the words are in. Accents are left out, so é is just E, but Spanish ñ, Romanian ă â î ș ț and German ä ö ü ß are letters with a key of their own.",
     "set.uiLanguage": "Menu language",
     "hint.uiLanguage": "The language of everything in this panel. Same as the words, or one of its own.",
     "opt.uiLanguage.auto": "Same as words",
@@ -253,7 +253,7 @@ texts.fr = {
     "cat.body": "Corps",
 
     "set.language": "Mots en",
-    "hint.language": "La langue des mots. Les accents sont ignorés : é devient E et œ devient OE.",
+    "hint.language": "La langue des mots. Les accents sont ignorés (é devient E, œ devient OE), mais le ñ espagnol, les ă â î ș ț roumains et les ä ö ü ß allemands sont des lettres à part, avec leur touche.",
     "set.uiLanguage": "Langue du menu",
     "hint.uiLanguage": "La langue de tout ce panneau. La même que les mots, ou une autre.",
     "opt.uiLanguage.auto": "Comme les mots",
@@ -413,7 +413,7 @@ texts.nl = {
     "cat.body": "Lichaam",
 
     "set.language": "Woorden in",
-    "hint.language": "De taal van de woorden. Accenten vallen weg, dus ë is gewoon E.",
+    "hint.language": "De taal van de woorden. Accenten vallen weg, dus ë is gewoon E, maar de Spaanse ñ, de Roemeense ă â î ș ț en de Duitse ä ö ü ß zijn eigen letters met een eigen toets.",
     "set.uiLanguage": "Menutaal",
     "hint.uiLanguage": "De taal van alles in dit paneel. Dezelfde als de woorden, of een eigen taal.",
     "opt.uiLanguage.auto": "Zoals de woorden",
@@ -573,7 +573,7 @@ texts.ro = {
     "cat.body": "Corp",
 
     "set.language": "Cuvinte în",
-    "hint.language": "Limba cuvintelor. Diacriticele se ignoră, deci ș e doar S și ă e doar A.",
+    "hint.language": "Limba cuvintelor. Accentele se ignoră, deci é e doar E, dar ă â î ș ț în română, ñ în spaniolă și ä ö ü ß în germană sunt litere cu tasta lor.",
     "set.uiLanguage": "Limba meniului",
     "hint.uiLanguage": "Limba a tot ce e în panou. Aceeași ca a cuvintelor, sau alta.",
     "opt.uiLanguage.auto": "Ca a cuvintelor",
@@ -733,7 +733,7 @@ texts.es = {
     "cat.body": "Cuerpo",
 
     "set.language": "Palabras en",
-    "hint.language": "Las tildes se omiten (á es A, ü es U), pero la ñ es una letra propia y tiene su tecla.",
+    "hint.language": "El idioma de las palabras. Las tildes se omiten (á es A), pero la ñ, las ă â î ș ț del rumano y las ä ö ü ß del alemán son letras propias y tienen su tecla.",
     "set.uiLanguage": "Idioma del menú",
     "hint.uiLanguage": "El idioma de todo este panel. El mismo que las palabras, u otro.",
     "opt.uiLanguage.auto": "Igual que las palabras",
