@@ -62,6 +62,42 @@ function labelOf(key) {
     return "";
 }
 
+// ---------- letters ----------
+
+// A to Z is every language's alphabet. Some languages have letters of their own on top,
+// played as letters (with a key of their own) instead of losing their accent:
+//   Spanish ñ, Romanian ă â î ș ț, German ä ö ü ß
+const AZ = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const alphabets = {
+    es: "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+    ro: "AĂÂBCDEFGHIÎJKLMNOPQRSȘTȚUVWXYZ",
+    de: AZ + "ÄÖÜẞ"
+};
+// every letter a word can have, whatever its language
+const ALL_LETTERS = AZ + "ÑĂÂÎȘȚÄÖÜẞ";
+
+// "ro" -> "AĂÂBCDEFGHIÎJ...", in the order of that language's alphabet
+function alphabetOf(lang) {
+    return alphabets[lang] || AZ;
+}
+
+// the letters a language adds to A to Z: "es" -> "Ñ", "en" -> ""
+function ownLetters(lang) {
+    return alphabetOf(lang).split("").filter(c => AZ.indexOf(c) === -1).join("");
+}
+
+function isLetter(c) {
+    return typeof c === "string" && c.length === 1 && ALL_LETTERS.indexOf(c) !== -1;
+}
+
+// one typed letter in capitals. ß has no capital in toUpperCase() (it gives "SS"),
+// so it becomes ẞ, the capital sharp s
+function upperLetter(c) {
+    const t = toText(c);
+    if (t === "ß" || t === "ẞ") return "ẞ";
+    return t.toUpperCase();
+}
+
 // ---------- cleaning words ----------
 
 // Turns one line into a word we can play, or "" if it can't be one.
@@ -70,38 +106,50 @@ function labelOf(key) {
 //   "new york"  -> "NEW YORK"
 //   "chute d’eau" -> "CHUTE D'EAU"   (apostrophes are kept, like spaces they're shown for free)
 //   "abc1", "a/b", "x" -> ""   (only letters, spaces, hyphens and apostrophes, 2 to 30 long)
-//   "año", "es"  -> "AÑO"      (Spanish keeps ñ as a letter of its own)
-//   "año"        -> "ANO"      (any other language folds ñ to N, like an accent)
+// A language keeps its own letters (see alphabets above):
+//   "año", "es"     -> "AÑO"       but "año" in any other language -> "ANO"
+//   "Brașov", "ro"  -> "BRAȘOV"    (an old ş with a cedilla counts as ș)
+//   "Straße", "de"  -> "STRAẞE"    and "Käse", "de" -> "KÄSE"
 function clean(raw, lang) {
     let s = toText(raw);
-    const spanish = lang === "es";
+    if (s.normalize) s = s.normalize("NFC");   // an already decomposed ñ or ă counts too
+    const own = ownLetters(lang);
 
-    // Spanish keeps ñ, so hold it aside as a placeholder while the accents come off.
-    // a literal placeholder in the file is not a letter, so drop it first
-    if (spanish) {
-        if (s.normalize) s = s.normalize("NFC");   // an already decomposed ñ counts too
-        s = s.replace(/[\uE000\uE001]/g, "");
-        s = s.replace(/ñ/g, "\uE000").replace(/Ñ/g, "\uE000");
+    // Romanian was long written with ş and ţ (a cedilla), they're the same letters as ș and ț
+    if (lang === "ro") s = s.replace(/ş/g, "ș").replace(/Ş/g, "Ș").replace(/ţ/g, "ț").replace(/Ţ/g, "Ț");
+
+    // the language's own letters are held aside as placeholders while the accents come off.
+    // a literal placeholder in the file is not a letter, so those go first
+    s = s.replace(/[\uE000-\uE00F]/g, "");
+    for (let i = 0; i < own.length; i++) {
+        const upper = own.charAt(i);
+        const lower = upper === "ẞ" ? "ß" : upper.toLowerCase();
+        s = s.split(lower).join(String.fromCharCode(0xE000 + i)).split(upper).join(String.fromCharCode(0xE000 + i));
     }
 
     s = s.replace(/œ/g, "oe").replace(/Œ/g, "OE");
     s = s.replace(/æ/g, "ae").replace(/Æ/g, "AE");
-    s = s.replace(/ß/g, "ss");
+    s = s.replace(/ß/g, "ss").replace(/ẞ/g, "SS");
     s = s.replace(/ł/g, "l").replace(/Ł/g, "L").replace(/ø/g, "o").replace(/Ø/g, "O");
     s = s.replace(/[’‘`]/g, "'");   // every kind of apostrophe becomes the plain one
 
     // split letters from their accents, then drop the accents
-    if (s.normalize) s = s.normalize("NFD").replace(/[̀-ͯ]/g, "");
+    if (s.normalize) s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
     s = s.toUpperCase();
     s = s.replace(/\s+/g, " ").trim();   // one space between words
 
-    // uppercase on the way in and out, so both ñ and Ñ come back as Ñ
-    if (spanish) s = s.replace(/\uE000/g, "Ñ");
+    // and the language's own letters come back, in capitals
+    for (let i = 0; i < own.length; i++) s = s.split(String.fromCharCode(0xE000 + i)).join(own.charAt(i));
 
     if (s.length < 2 || s.length > 30) return "";
-    const allowed = spanish ? /^[A-ZÑ][A-ZÑ '-]*[A-ZÑ]$/ : /^[A-Z][A-Z '-]*[A-Z]$/;
-    if (!allowed.test(s)) return "";
+    // only the language's letters, with spaces, hyphens or apostrophes inside
+    const letters = alphabetOf(lang);
+    for (let i = 0; i < s.length; i++) {
+        const c = s.charAt(i);
+        const inside = i > 0 && i < s.length - 1;
+        if (letters.indexOf(c) === -1 && !(inside && " '-".indexOf(c) !== -1)) return "";
+    }
     // no two marks in a row, like "--", "- " or "' "
     if (/[ '-]{2}/.test(s)) return "";
     return s;
@@ -109,7 +157,7 @@ function clean(raw, lang) {
 
 // Reads a list: one word or phrase per line, everything after # is a comment.
 // Bad lines and duplicates are skipped, and it stops at `max` words.
-// `lang` is only used for ñ, see clean().
+// `lang` decides which letters are kept, see clean().
 function parseList(text, max, lang) {
     const result = [];
     const seen = {};
@@ -188,16 +236,9 @@ function pool(choice, lists, customWords) {
     return result;
 }
 
-// letters only, spaces, hyphens and apostrophes don't count ("NEW YORK" -> 7).
-// Ñ is a letter here too, so "AÑO" is 3.
+// letters only, spaces, hyphens and apostrophes don't count ("NEW YORK" -> 7, "AÑO" -> 3)
 function letterCount(word) {
-    let count = 0;
-    const w = toText(word);
-    for (let i = 0; i < w.length; i++) {
-        const c = w.charAt(i);
-        if ((c >= "A" && c <= "Z") || c === "Ñ") count++;
-    }
-    return count;
+    return toText(word).split("").filter(isLetter).length;
 }
 
 // the "Word length" setting
@@ -207,4 +248,33 @@ function fitsLength(word, length) {
     if (length === "medium") return n >= 6 && n <= 9;
     if (length === "long") return n >= 9;
     return true;   // "any"
+}
+
+// ---------- the letters on screen ----------
+
+// The keys to show, as rows. The language's letters, plus any letter of the word in play
+// that it doesn't have (switching language mid-word must never make a word unwinnable).
+//   "abc"    -> the alphabet in order, in rows of up to 10
+//   "qwerty" -> the usual three rows, Ñ at the end of the middle one like on a Spanish
+//               keyboard, other letters of a language's own in a row underneath
+function keyRows(layout, lang, word) {
+    let letters = alphabetOf(lang);
+    const w = toText(word);
+    for (let i = 0; i < w.length; i++) {
+        const c = w.charAt(i);
+        if (isLetter(c) && letters.indexOf(c) === -1) letters += c;
+    }
+
+    if (layout === "abc") {
+        const count = Math.ceil(letters.length / 10);
+        const per = Math.ceil(letters.length / count);
+        const rows = [];
+        for (let i = 0; i < letters.length; i += per) rows.push(letters.substring(i, i + per));
+        return rows;
+    }
+
+    const extra = letters.split("").filter(c => AZ.indexOf(c) === -1).join("");
+    if (extra === "") return ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+    if (extra === "Ñ") return ["QWERTYUIOP", "ASDFGHJKLÑ", "ZXCVBNM"];
+    return ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM", extra];
 }

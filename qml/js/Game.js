@@ -20,14 +20,14 @@
 // The functions never change the game you give them. They make a copy and
 // return that, so the QML side always sees a new object and updates.
 
-const ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+// every letter a word can have: A to Z and the letters some languages add (Ñ, Ă, Ä, ...)
+const ALPHABET = Words.ALL_LETTERS;
 const MAX_RECENT = 30;
 
 // ---------- small helpers ----------
 
 function isLetter(c) {
-    if (typeof c !== "string" || c.length !== 1) return false;
-    return ALPHABET.indexOf(c) !== -1;
+    return Words.isLetter(c);
 }
 
 // anything -> text, without trusting what it is
@@ -51,9 +51,11 @@ function toInt(value, min, max, fallback) {
 }
 
 // a word we can play: capital letters, maybe spaces, hyphens or apostrophes inside, max 30 long.
-// Ñ counts as a letter here, but only Spanish words are cleaned with it kept
+// the letters some languages add count too, only those languages' words are cleaned with them kept
 function isValidWord(word) {
-    return /^[A-ZÑ][A-ZÑ '-]{0,28}[A-ZÑ]$/.test(word);
+    if (typeof word !== "string" || word.length < 2 || word.length > 30) return false;
+    if (!isLetter(word.charAt(0)) || !isLetter(word.charAt(word.length - 1))) return false;
+    return word.split("").every(c => isLetter(c) || " '-".indexOf(c) !== -1);
 }
 
 // only the categories we know, so a hand-edited file can't sneak in odd keys
@@ -168,7 +170,7 @@ function touched(game) {
 // Try one letter. If it does nothing (game over, not a letter, already tried)
 // the same game comes back.
 function guess(game, letter) {
-    const c = toText(letter).toUpperCase();
+    const c = Words.upperLetter(letter);
     if (!game || game.status !== "playing") return game;
     if (!isLetter(c)) return game;
     if (game.guessed.indexOf(c) !== -1) return game;

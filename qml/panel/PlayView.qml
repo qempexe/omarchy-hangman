@@ -28,8 +28,9 @@ Item {
             root.svc.newWord(); e.accepted = true; return
         }
         if (e.text === "?") { root.svc.useHint(); e.accepted = true; return }
-        const t = Words.toText(e.text).toUpperCase()
-        if (t.length === 1 && Game.isLetter(t) && (t !== "Ñ" || root.enie)) { root.svc.guess(t); e.accepted = true }
+        // only letters that have a key: Ñ in English, say, is not a letter you can play
+        const t = Words.upperLetter(e.text)
+        if (t.length === 1 && root.keyRows.join("").indexOf(t) !== -1) { root.svc.guess(t); e.accepted = true }
     }
 
     // shake the word on a wrong letter
@@ -47,13 +48,8 @@ Item {
         function onLastMissChanged() { if (root.ui && root.ui.animations) shakeAnim.restart() }
     }
 
-    // ñ can be played in Spanish, or while the word in play has one: switching
-    // language mid-word (or loading a saved Ñ game) must never make it unwinnable
-    readonly property bool enie: !!cfg && (cfg.language === "es" || (!!game && game.word.indexOf("Ñ") !== -1))
-
-    readonly property var keyRows: !cfg ? [] : (cfg.keyboard === "abc"
-        ? (root.enie ? ["ABCDEFGHI", "JKLMNÑOPQ", "RSTUVWXYZ"] : ["ABCDEFGHI", "JKLMNOPQR", "STUVWXYZ"])
-        : (root.enie ? ["QWERTYUIOP", "ASDFGHJKLÑ", "ZXCVBNM"] : ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]))
+    // the language's letters, plus any odd one in the word in play (see Words.keyRows)
+    readonly property var keyRows: !cfg ? [] : Words.keyRows(cfg.keyboard, cfg.language, game ? game.word : "")
 
     ColumnLayout {
         anchors.fill: parent
