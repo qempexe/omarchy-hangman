@@ -1,0 +1,207 @@
+# countries, German. one word or phrase a line
+afghanistan
+albanien
+algerien
+andorra
+angola
+antigua
+antigua und barbuda
+argentinien
+armenien
+australien
+österreich
+aserbaidschan
+bahamas
+bahrain
+bangladesch
+barbados
+belarus
+belgien
+belize
+benin
+bhutan
+bolivien
+bosnien und herzegowina
+botswana
+brasilien
+brunei
+bulgarien
+burkina faso
+burundi
+kambodscha
+kamerun
+kanada
+kap verde
+zentralafrikanische republik
+tschad
+chile
+china
+kolumbien
+komoren
+kongo
+costa rica
+kroatien
+kuba
+zypern
+tschechien
+dänemark
+dschibuti
+dominica
+dominikanische republik
+osttimor
+ecuador
+ägypten
+el salvador
+england
+äquatorialguinea
+eritrea
+estland
+eswatini
+äthiopien
+färöer
+fidschi
+finnland
+frankreich
+französisch-guayana
+gabun
+gambia
+georgien
+deutschland
+ghana
+gibraltar
+griechenland
+grönland
+grenada
+guatemala
+guinea
+guyana
+haiti
+honduras
+hongkong
+ungarn
+island
+indien
+indonesien
+iran
+irak
+irland
+israel
+italien
+elfenbeinküste
+jamaika
+japan
+jordanien
+kasachstan
+kenia
+kiribati
+kosovo
+kuwait
+kirgisistan
+laos
+lettland
+libanon
+lesotho
+liberia
+libyen
+liechtenstein
+litauen
+luxemburg
+macau
+madagaskar
+malawi
+malaysia
+malediven
+mali
+malta
+marshallinseln
+mauretanien
+mauritius
+mexiko
+mikronesien
+moldau
+monaco
+mongolei
+montenegro
+marokko
+mosambik
+myanmar
+namibia
+nauru
+nepal
+niederlande
+neukaledonien
+neuseeland
+nicaragua
+niger
+nigeria
+nordkorea
+nordmazedonien
+nordirland
+norwegen
+oman
+pakistan
+palau
+panama
+papua-neuguinea
+paraguay
+peru
+philippinen
+polen
+portugal
+puerto rico
+katar
+rumänien
+russland
+ruanda
+st kitts und nevis
+st lucia
+samoa
+san marino
+saudi-arabien
+schottland
+senegal
+serbien
+seychellen
+sierra leone
+singapur
+slowakei
+slowenien
+salomonen
+somalia
+südafrika
+südkorea
+südsudan
+spanien
+sri lanka
+sudan
+suriname
+schweden
+schweiz
+syrien
+taiwan
+tadschikistan
+tansania
+thailand
+togo
+tonga
+trinidad und tobago
+tunesien
+türkei
+turkmenistan
+tuvalu
+uganda
+ukraine
+vereinigte arabische emirate
+vereinigtes königreich
+vereinigte staaten
+uruguay
+usbekistan
+vanuatu
+vatikanstadt
+venezuela
+vietnam
+wales
+westsahara
+jemen
+sambia
+simbabwe
