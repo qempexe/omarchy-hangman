@@ -7,7 +7,7 @@
 //   words/en/animals-en.txt, words/fr/animals-fr.txt, words/nl/animals-nl.txt, words/ro/animals-ro.txt, words/es/animals-es.txt, ...
 // One word or phrase per line, # starts a comment.
 
-var categories = [
+const categories = [
     { key: "animals",   label: "Animals" },
     { key: "countries", label: "Countries" },
     { key: "cities",    label: "Cities" },
@@ -25,7 +25,7 @@ var categories = [
     { key: "body",      label: "Body" }
 ];
 
-var languages = [
+const languages = [
     { key: "en", label: "English" },
     { key: "fr", label: "Français" },
     { key: "nl", label: "Nederlands" },
@@ -33,8 +33,8 @@ var languages = [
     { key: "es", label: "Español" }
 ];
 
-var MAX_WORDS_PER_FILE = 5000;
-var MAX_CUSTOM_WORDS = 2000;
+const MAX_WORDS_PER_FILE = 5000;
+const MAX_CUSTOM_WORDS = 2000;
 
 // ---------- small helpers ----------
 
@@ -46,8 +46,8 @@ function toText(value) {
 }
 
 // the category keys: ["animals", "countries", ...]
-var keys = [];
-for (var k = 0; k < categories.length; k++) keys.push(categories[k].key);
+const keys = [];
+for (let k = 0; k < categories.length; k++) keys.push(categories[k].key);
 
 function isCategory(key) {
     return keys.indexOf(key) !== -1;
@@ -56,7 +56,7 @@ function isCategory(key) {
 // "animals" -> "Animals"
 function labelOf(key) {
     if (key === "custom") return "Your words";
-    for (var i = 0; i < categories.length; i++) {
+    for (let i = 0; i < categories.length; i++) {
         if (categories[i].key === key) return categories[i].label;
     }
     return "";
@@ -73,8 +73,8 @@ function labelOf(key) {
 //   "año", "es"  -> "AÑO"      (Spanish keeps ñ as a letter of its own)
 //   "año"        -> "ANO"      (any other language folds ñ to N, like an accent)
 function clean(raw, lang) {
-    var s = toText(raw);
-    var spanish = lang === "es";
+    let s = toText(raw);
+    const spanish = lang === "es";
 
     // Spanish keeps ñ, so hold it aside as a placeholder while the accents come off.
     // a literal placeholder in the file is not a letter, so drop it first
@@ -100,7 +100,7 @@ function clean(raw, lang) {
     if (spanish) s = s.replace(/\uE000/g, "Ñ");
 
     if (s.length < 2 || s.length > 30) return "";
-    var allowed = spanish ? /^[A-ZÑ][A-ZÑ '-]*[A-ZÑ]$/ : /^[A-Z][A-Z '-]*[A-Z]$/;
+    const allowed = spanish ? /^[A-ZÑ][A-ZÑ '-]*[A-ZÑ]$/ : /^[A-Z][A-Z '-]*[A-Z]$/;
     if (!allowed.test(s)) return "";
     // no two marks in a row, like "--", "- " or "' "
     if (/[ '-]{2}/.test(s)) return "";
@@ -111,18 +111,18 @@ function clean(raw, lang) {
 // Bad lines and duplicates are skipped, and it stops at `max` words.
 // `lang` is only used for ñ, see clean().
 function parseList(text, max, lang) {
-    var result = [];
-    var seen = {};
-    var lines = toText(text).split(/\r?\n/);
+    const result = [];
+    const seen = {};
+    const lines = toText(text).split(/\r?\n/);
 
-    for (var i = 0; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i++) {
         if (result.length >= max) break;
 
-        var line = lines[i];
-        var hash = line.indexOf("#");
+        let line = lines[i];
+        const hash = line.indexOf("#");
         if (hash !== -1) line = line.substring(0, hash);
 
-        var word = clean(line, lang);
+        const word = clean(line, lang);
         if (word !== "" && seen[word] !== true) {
             seen[word] = true;
             result.push(word);
@@ -141,19 +141,19 @@ function parseCustom(text, lang) {
 //   { animals: ["AARDVARK", ...], countries: [...], ... }
 // Unknown category names are ignored.
 function parseBundle(text, lang) {
-    var lists = {};
-    var parts = toText(text).split(/^@@ /m);
+    const lists = {};
+    const parts = toText(text).split(/^@@ /m);
 
-    for (var i = 0; i < parts.length; i++) {
-        var part = parts[i];
-        var newline = part.indexOf("\n");
+    for (const part of parts) {
+        const newline = part.indexOf("\n");
         if (newline === -1) continue;
 
-        var name = part.substring(0, newline).trim();
+        const name = part.substring(0, newline).trim();
         if (!isCategory(name)) continue;
 
         lists[name] = parseList(part.substring(newline + 1), MAX_WORDS_PER_FILE, lang);
     }
+
     return lists;
 }
 
@@ -165,11 +165,11 @@ function parseBundle(text, lang) {
 //   "food"   -> just that one (an unknown name gives everything)
 // lists is what parseBundle() returned for the current language.
 function pool(choice, lists, customWords) {
-    var result = [];
+    const result = [];
 
     function addAll(categoryKey, words) {
         if (!words) return;
-        for (var i = 0; i < words.length; i++) {
+        for (let i = 0; i < words.length; i++) {
             result.push({ word: words[i], category: categoryKey });
         }
     }
@@ -184,17 +184,17 @@ function pool(choice, lists, customWords) {
         return result;
     }
 
-    for (var c = 0; c < keys.length; c++) addAll(keys[c], lists[keys[c]]);
+    for (let c = 0; c < keys.length; c++) addAll(keys[c], lists[keys[c]]);
     return result;
 }
 
 // letters only, spaces, hyphens and apostrophes don't count ("NEW YORK" -> 7).
 // Ñ is a letter here too, so "AÑO" is 3.
 function letterCount(word) {
-    var count = 0;
-    var w = toText(word);
-    for (var i = 0; i < w.length; i++) {
-        var c = w.charAt(i);
+    let count = 0;
+    const w = toText(word);
+    for (let i = 0; i < w.length; i++) {
+        const c = w.charAt(i);
         if ((c >= "A" && c <= "Z") || c === "Ñ") count++;
     }
     return count;
@@ -202,7 +202,7 @@ function letterCount(word) {
 
 // the "Word length" setting
 function fitsLength(word, length) {
-    var n = letterCount(word);
+    const n = letterCount(word);
     if (length === "short") return n <= 6;
     if (length === "medium") return n >= 6 && n <= 9;
     if (length === "long") return n >= 9;

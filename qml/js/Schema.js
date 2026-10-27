@@ -8,24 +8,24 @@
 //   when: the row is greyed out unless these other settings have these values
 
 // custom color swatches: backgrounds, text colors, accents
-var swatches = [
+const swatches = [
   "#141414", "#1d1510", "#1a1b26", "#282a36", "#2e3440", "#2d353b", "#1f1f28", "#3b2a1f",
   "#e0e0e0", "#eadbc8", "#ffffff", "#c0caf5", "#d8dee9", "#dcd7ba", "#f8f8f2", "#e0def4",
   "#d4a35a", "#c8925a", "#7aa2f7", "#cba6f7", "#a7c080", "#88c0d0", "#fabd2f", "#ff6a1f"
 ];
 
 // "Words from": everything, each built-in list, then your own words
-var categoryOptions = ["mixed"];
-var categoryLabels = { mixed: "Everything", custom: "Your words" };
-for (var c = 0; c < Words.categories.length; c++) {
+const categoryOptions = ["mixed"];
+const categoryLabels = { mixed: "Everything", custom: "Your words" };
+for (let c = 0; c < Words.categories.length; c++) {
     categoryOptions.push(Words.categories[c].key);
     categoryLabels[Words.categories[c].key] = Words.categories[c].label;
 }
 categoryOptions.push("custom");
 
-var figures = ["gallows", "balloons", "snowman", "hearts"];
+const figures = ["gallows", "balloons", "snowman", "hearts"];
 
-var groups = [
+const groups = [
   {
     title: "Game",
     items: [
@@ -125,30 +125,30 @@ var groups = [
 
 // The color picker row saves three keys (customBg, customFg, accentColor)
 // instead of its own key, so those get remembered separately.
-var colorKeys = {};
-var defaults = {};
-var itemByKey = {};
+const colorKeys = {};
+const defaults = {};
+const itemByKey = {};
 
-for (var g = 0; g < groups.length; g++) {
-    var items = groups[g].items;
-    for (var i = 0; i < items.length; i++) {
-        var item = items[i];
-        itemByKey[item.key] = item;
-        if (item.kind === "palette") {
-            for (var t = 0; t < item.targets.length; t++) {
-                var colorKey = item.targets[t].key;
-                defaults[colorKey] = item.fallback[colorKey];
-                colorKeys[colorKey] = item.fallback[colorKey];
-            }
-        } else {
-            defaults[item.key] = item.fallback;
+for (let g = 0; g < groups.length; g++) {
+  const items = groups[g].items;
+
+  for (const item of items) {
+    itemByKey[item.key] = item;
+    if (item.kind === "palette") {
+        for (let t = 0; t < item.targets.length; t++) {
+            const colorKey = item.targets[t].key;
+            defaults[colorKey] = item.fallback[colorKey];
+            colorKeys[colorKey] = item.fallback[colorKey];
         }
+    } else {
+        defaults[item.key] = item.fallback;
     }
+  }
 }
 
 // every key settings.json can hold (the palette row counts as its three colors)
-var settingKeys = [];
-for (var name in defaults) settingKeys.push(name);
+const settingKeys = [];
+for (const name in defaults) settingKeys.push(name);
 
 function isSetting(key) {
     return settingKeys.indexOf(key) !== -1;
@@ -157,7 +157,7 @@ function isSetting(key) {
 // the setting for a key, or null. Only real settings count:
 // itemByKey["constructor"] is a function, not one of our items
 function itemFor(key) {
-    var item = itemByKey[key];
+    const item = itemByKey[key];
     if (item && typeof item === "object" && item.key === key) return item;
     return null;
 }
@@ -182,7 +182,7 @@ function clean(key, value) {
         if (validHex(value)) return value.toLowerCase();
         return colorKeys[key];
     }
-    var item = itemFor(key);
+    const item = itemFor(key);
     if (item === null) return undefined;
     if (value === null || value === undefined) return item.fallback;
 
@@ -192,7 +192,7 @@ function clean(key, value) {
     }
 
     if (item.kind === "int") {
-        var n = parseNum(value);
+        let n = parseNum(value);
         if (!isFinite(n)) return item.fallback;
         n = Math.round(n);
         if (n < item.min) return item.min;
@@ -208,7 +208,7 @@ function clean(key, value) {
 
     // text: no control characters and no < >, so it always shows as plain text,
     // and not longer than allowed
-    var text = Words.toText(value).replace(/[\u0000-\u001f\u007f<>]/g, "");
+    let text = Words.toText(value).replace(/[\u0000-\u001f\u007f<>]/g, "");
     if (item.maxLength) text = text.slice(0, item.maxLength);
     return text;
 }
@@ -216,10 +216,10 @@ function clean(key, value) {
 // The whole saved file -> every setting, checked, with defaults filled in
 function resolve(saved) {
     if (!saved) saved = {};
-    var result = {};
+    const result = {};
     // only our own keys are read from the file
-    for (var key in defaults) {
-        var value = typeof saved === "object" ? saved[key] : undefined;
+    for (const key in defaults) {
+        let value = typeof saved === "object" ? saved[key] : undefined;
         if (typeof value === "function") value = undefined;
         result[key] = clean(key, value);
     }

@@ -20,8 +20,8 @@
 // The functions never change the game you give them. They make a copy and
 // return that, so the QML side always sees a new object and updates.
 
-var ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-var MAX_RECENT = 30;
+const ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+const MAX_RECENT = 30;
 
 // ---------- small helpers ----------
 
@@ -40,7 +40,7 @@ function toText(value) {
 // turns a number, or text like "12", into a whole number between min and max.
 // anything else (objects, "abc", "1e999") gives the fallback
 function toInt(value, min, max, fallback) {
-    var n = fallback;
+    let n = fallback;
     if (typeof value === "number") n = value;
     else if (typeof value === "string" && /^-?[0-9]{1,15}(\.[0-9]+)?$/.test(value)) n = parseFloat(value);
     if (!isFinite(n)) return fallback;
@@ -83,9 +83,9 @@ function copyGame(game) {
 
 // every different letter in the word, once ("BRUGES" -> "BRUGES", "APPLE" -> "APLE")
 function letters(word) {
-    var result = "";
-    for (var i = 0; i < word.length; i++) {
-        var c = word.charAt(i);
+    let result = "";
+    for (let i = 0; i < word.length; i++) {
+        const c = word.charAt(i);
         if (isLetter(c) && result.indexOf(c) === -1) result += c;
     }
     return result;
@@ -101,13 +101,13 @@ function pick(list, recent, random) {
     if (!random) random = Math.random;
     if (!recent) recent = [];
 
-    var fresh = [];
-    for (var i = 0; i < list.length; i++) {
+    const fresh = [];
+    for (let i = 0; i < list.length; i++) {
         if (recent.indexOf(list[i].word) === -1) fresh.push(list[i]);
     }
-    var choices = fresh.length > 0 ? fresh : list;
+    const choices = fresh.length > 0 ? fresh : list;
 
-    var index = Math.floor(random() * choices.length);
+    let index = Math.floor(random() * choices.length);
     if (index >= choices.length) index = choices.length - 1;
     return choices[index];
 }
@@ -117,7 +117,7 @@ function pick(list, recent, random) {
 function start(entry, options, now) {
     if (!options) options = {};
 
-    var game = {
+    const game = {
         word: entry.word,
         category: entry.category,
         guessed: "",
@@ -131,7 +131,7 @@ function start(entry, options, now) {
     };
 
     if (options.reveal) {
-        var first = entry.word.charAt(0);
+        const first = entry.word.charAt(0);
         if (isLetter(first)) {
             game.guessed = first;
             game.given = first;
@@ -144,8 +144,8 @@ function start(entry, options, now) {
 
 // true when every letter of the word has been guessed
 function solved(game) {
-    var needed = letters(game.word);
-    for (var i = 0; i < needed.length; i++) {
+    const needed = letters(game.word);
+    for (let i = 0; i < needed.length; i++) {
         if (game.guessed.indexOf(needed.charAt(i)) === -1) return false;
     }
     return true;
@@ -168,12 +168,12 @@ function touched(game) {
 // Try one letter. If it does nothing (game over, not a letter, already tried)
 // the same game comes back.
 function guess(game, letter) {
-    var c = toText(letter).toUpperCase();
+    const c = toText(letter).toUpperCase();
     if (!game || game.status !== "playing") return game;
     if (!isLetter(c)) return game;
     if (game.guessed.indexOf(c) !== -1) return game;
 
-    var next = copyGame(game);
+    const next = copyGame(game);
     next.guessed = game.guessed + c;
     if (game.word.indexOf(c) === -1) next.wrong = game.wrong + 1;
     return updateStatus(next);
@@ -191,17 +191,17 @@ function hint(game, random) {
     if (!canHint(game)) return game;
     if (!random) random = Math.random;
 
-    var all = letters(game.word);
-    var hidden = [];
-    for (var i = 0; i < all.length; i++) {
+    const all = letters(game.word);
+    const hidden = [];
+    for (let i = 0; i < all.length; i++) {
         if (game.guessed.indexOf(all.charAt(i)) === -1) hidden.push(all.charAt(i));
     }
     if (hidden.length === 0) return game;
 
-    var index = Math.floor(random() * hidden.length);
+    let index = Math.floor(random() * hidden.length);
     if (index >= hidden.length) index = hidden.length - 1;
 
-    var next = copyGame(game);
+    const next = copyGame(game);
     next.guessed = game.guessed + hidden[index];
     next.hints = game.hints + 1;
     next.wrong = game.wrong + 1;
@@ -212,14 +212,14 @@ function hint(game, random) {
 
 // one object per character: { ch: "B", letter: true, shown: false }
 function cells(game) {
-    var result = [];
+    const result = [];
     if (!game) return result;
-    for (var i = 0; i < game.word.length; i++) {
-        var c = game.word.charAt(i);
-        var letter = isLetter(c);
+    for (let i = 0; i < game.word.length; i++) {
+        const c = game.word.charAt(i);
+        const letter = isLetter(c);
         result.push({
             ch: c,
-            letter: letter,
+            letter,
             // spaces, hyphens and apostrophes are always shown
             shown: !letter || game.guessed.indexOf(c) !== -1
         });
@@ -229,9 +229,9 @@ function cells(game) {
 
 // the word for the bar: "B _ U _ _ S", two spaces between words
 function masked(game) {
-    var parts = [];
-    var list = cells(game);
-    for (var i = 0; i < list.length; i++) {
+    const parts = [];
+    const list = cells(game);
+    for (let i = 0; i < list.length; i++) {
         if (list[i].ch === " ") parts.push(" ");
         else if (list[i].shown) parts.push(list[i].ch);
         else parts.push("_");
@@ -253,25 +253,25 @@ function state(game, letter) {
 function revive(saved) {
     if (!saved || typeof saved !== "object") return null;
 
-    var word = toText(saved.word);
+    const word = toText(saved.word);
     if (!isValidWord(word)) return null;
 
     // keep only real letters, each once
-    var guessed = "";
-    var raw = toText(saved.guessed);
-    for (var i = 0; i < raw.length && i < ALPHABET.length; i++) {
-        var c = raw.charAt(i);
+    let guessed = "";
+    const raw = toText(saved.guessed);
+    for (let i = 0; i < raw.length && i < ALPHABET.length; i++) {
+        const c = raw.charAt(i);
         if (isLetter(c) && guessed.indexOf(c) === -1) guessed += c;
     }
 
-    var given = toText(saved.given);
+    let given = toText(saved.given);
     if (!isLetter(given) || guessed.indexOf(given) === -1) given = "";
 
-    var game = {
-        word: word,
+    const game = {
+        word,
         category: isValidCategory(toText(saved.category)) ? toText(saved.category) : "",
-        guessed: guessed,
-        given: given,
+        guessed,
+        given,
         wrong: 0,
         lives: toInt(saved.lives, 1, 12, 6),
         hints: toInt(saved.hints, 0, 5, 0),
@@ -282,8 +282,8 @@ function revive(saved) {
 
     // count the misses ourselves instead of trusting the file,
     // and every hint used costs a life too
-    var misses = 0;
-    for (var j = 0; j < guessed.length; j++) {
+    let misses = 0;
+    for (let j = 0; j < guessed.length; j++) {
         if (word.indexOf(guessed.charAt(j)) === -1) misses++;
     }
     game.wrong = Math.min(game.lives, misses + game.hints);
@@ -307,7 +307,7 @@ function emptyStats() {
 
 // same idea as revive(): clean up whatever came from the file
 function reviveStats(saved) {
-    var stats = emptyStats();
+    const stats = emptyStats();
     if (!saved || typeof saved !== "object") return stats;
 
     stats.played = toInt(saved.played, 0, 1e9, 0);
@@ -317,24 +317,24 @@ function reviveStats(saved) {
     stats.perfect = Math.min(toInt(saved.perfect, 0, 1e9, 0), stats.won);
 
     // walk our own category list, not the keys in the file
-    var cats = saved.byCategory;
+    const cats = saved.byCategory;
     if (cats && typeof cats === "object") {
-        var names = statsCategories();
-        for (var i = 0; i < names.length; i++) {
-            var c = cats[names[i]];
+        const names = statsCategories();
+        for (let i = 0; i < names.length; i++) {
+            const c = cats[names[i]];
             if (!c || typeof c !== "object") continue;
-            var played = toInt(c.played, 0, 1e9, 0);
-            stats.byCategory[names[i]] = { played: played, won: Math.min(toInt(c.won, 0, 1e9, 0), played) };
+            const played = toInt(c.played, 0, 1e9, 0);
+            stats.byCategory[names[i]] = { played, won: Math.min(toInt(c.won, 0, 1e9, 0), played) };
         }
     }
 
-    var recent = Array.isArray(saved.recent) ? saved.recent.slice(0, MAX_RECENT) : [];
-    for (var j = 0; j < recent.length; j++) {
-        var r = recent[j] || {};
-        var word = toText(r.word);
+    const recent = Array.isArray(saved.recent) ? saved.recent.slice(0, MAX_RECENT) : [];
+    for (let j = 0; j < recent.length; j++) {
+        const r = recent[j] || {};
+        const word = toText(r.word);
         if (!isValidWord(word)) continue;
         stats.recent.push({
-            word: word,
+            word,
             won: r.won === true,
             wrong: toInt(r.wrong, 0, 12, 0),
             category: isValidCategory(toText(r.category)) ? toText(r.category) : ""
@@ -346,11 +346,11 @@ function reviveStats(saved) {
 // Adds a finished game to the stats and returns the new stats.
 // Unfinished games don't change anything.
 function record(stats, game) {
-    var next = reviveStats(JSON.parse(JSON.stringify(stats)));
+    const next = reviveStats(JSON.parse(JSON.stringify(stats)));
     if (!game) return next;
     if (game.status !== "won" && game.status !== "lost") return next;
 
-    var won = game.status === "won";
+    const won = game.status === "won";
     next.played++;
     if (won) {
         next.won++;
@@ -361,16 +361,16 @@ function record(stats, game) {
     }
     if (next.streak > next.best) next.best = next.streak;
 
-    var category = isValidCategory(game.category) ? game.category : "";
+    const category = isValidCategory(game.category) ? game.category : "";
     if (category !== "") {
-        var old = next.byCategory[category] || { played: 0, won: 0 };
+        const old = next.byCategory[category] || { played: 0, won: 0 };
         next.byCategory[category] = {
             played: old.played + 1,
             won: old.won + (won ? 1 : 0)
         };
     }
 
-    next.recent.unshift({ word: game.word, won: won, wrong: game.wrong, category: category });
+    next.recent.unshift({ word: game.word, won, wrong: game.wrong, category });
     if (next.recent.length > MAX_RECENT) next.recent = next.recent.slice(0, MAX_RECENT);
     return next;
 }

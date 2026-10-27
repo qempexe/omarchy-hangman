@@ -8,9 +8,9 @@
 // Missing in a language? Then the English one is used, and if that's missing too,
 // the key itself. So a forgotten translation never shows an empty button.
 
-var languages = ["en", "fr", "nl", "ro", "es"];
+const languages = ["en", "fr", "nl", "ro", "es"];
 
-var texts = {};
+const texts = {};
 
 texts.en = {
     "game": "Hangman",
@@ -827,8 +827,8 @@ function pick(lang) {
 
 // the text for a key, with {0} and {1} filled in
 function t(lang, key, a, b) {
-    var table = texts[pick(lang)];
-    var text = key;
+    const table = texts[pick(lang)];
+    let text = key;
     if (hasText(table, key)) text = table[key];
     else if (hasText(texts.en, key)) text = texts.en[key];
 
@@ -845,12 +845,13 @@ function tOr(lang, key, fallback) {
 
 // option labels for a setting row: { short: "Court", long: "Long", ... }
 function optionLabels(lang, settingKey, options, englishLabels) {
-    var result = {};
-    for (var i = 0; i < options.length; i++) {
-        var opt = options[i];
-        var fallback = englishLabels && hasText(englishLabels, opt) ? englishLabels[opt] : opt;
+    const result = {};
+
+    for (const opt of options) {
+        const fallback = englishLabels && hasText(englishLabels, opt) ? englishLabels[opt] : opt;
         if (settingKey === "category") result[opt] = tOr(lang, "cat." + opt, fallback);
         else result[opt] = tOr(lang, "opt." + settingKey + "." + opt, fallback);
     }
+
     return result;
 }
