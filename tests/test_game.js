@@ -4,7 +4,7 @@ const fs = require("fs"), path = require("path");
 function namesOf(obj) { const out = []; for (const k in obj) out.push(k); return out; }
 const js = (f) => fs.readFileSync(path.join(__dirname, "..", "qml", "js", f), "utf8")
   .replace(/^\.pragma.*$/m, "").replace(/^\.import.*$/mg, "");
-const Words = new Function(js("Words.js") + "; return { categories, languages, keys, labelOf, clean, parseList, parseCustom, parseBundle, pool, letterCount, fitsLength, toText };")();
+const Words = new Function(js("Words.js") + "; return { categories, languages, keys, labelOf, ALL_LETTERS, alphabetOf, ownLetters, isLetter, upperLetter, keyRows, clean, parseList, parseCustom, parseBundle, pool, letterCount, fitsLength, toText };")();
 const Game = new Function("Words", js("Game.js") + "; return { touched, pick, start, guess, hint, canHint, cells, masked, state, revive, emptyStats, reviveStats, record, letters, isLetter, isValidWord };")(Words);
 const Schema = new Function("Words", js("Schema.js") + "; return { groups, defaults, clean, resolve, categoryOptions, isSetting };")(Words);
 const Lang = new Function(js("Lang.js") + "; return { texts, t, tOr, optionLabels, languages };")();
@@ -71,11 +71,38 @@ check(JSON.stringify(Words.parseList("año\nano", 5000, "es")) === JSON.stringif
 check(JSON.stringify(Words.parseList("año\nano", 5000)) === JSON.stringify(["ANO"]), "año and ano still fold together elsewhere");
 // the UI keeps ñ out of an English game; at engine level it is an ordinary miss
 check(Game.guess(Game.start({ word: "CAT", category: "animals" }, {}), "Ñ").wrong === 1, "Ñ on an English word is just a wrong letter");
-// the invariant behind all of it: only the exact "es" changes anything
-for (const lang of ["fr", "nl", "ro"]) {
-  for (const w of ["año", "ñu", "pingüino", "Brașov", "bœuf", "Straße", "Brașov"])
+// the invariant behind all of it: languages without letters of their own change nothing
+for (const lang of ["en", "fr", "nl"]) {
+  for (const w of ["año", "ñu", "pingüino", "Brașov", "bœuf", "Straße", "Käse"])
     check(Words.clean(w, lang) === Words.clean(w), "clean(" + w + ", " + lang + ") is the same as clean(" + w + ")");
 }
+
+// Romanian and German keep their own letters too
+console.log("== romanian and german letters");
+check(Words.clean("Brașov", "ro") === "BRAȘOV" && Words.clean("Spânzurătoarea", "ro") === "SPÂNZURĂTOAREA" && Words.clean("înger", "ro") === "ÎNGER", "clean keeps ă â î ș ț for Romanian");
+check(Words.clean("ţară", "ro") === "ȚARĂ" && Words.clean("ŞARPE", "ro") === "ȘARPE", "an old ş or ţ with a cedilla counts as ș and ț");
+check(Words.clean("año", "ro") === "ANO" && Words.clean("Käse", "ro") === "KASE", "Romanian still folds other accents");
+check(Words.clean("Käse", "de") === "KÄSE" && Words.clean("Straße", "de") === "STRAẞE" && Words.clean("Übung", "de") === "ÜBUNG" && Words.clean("Öl", "de") === "ÖL", "clean keeps ä ö ü ß for German");
+check(Words.clean("Café", "de") === "CAFE" && Words.clean("ţară", "de") === "TARA" && Words.clean("STRASSE", "de") === "STRASSE", "German still folds other accents, and SS stays SS");
+check(Words.clean("a\u0306r", "ro") === "ĂR" && Words.clean("\uE003x", "de") === "", "decomposed letters count, a stray placeholder does not");
+check(Words.upperLetter("ß") === "ẞ" && Words.upperLetter("ș") === "Ș" && Words.upperLetter("ä") === "Ä" && Words.upperLetter("q") === "Q", "typed letters in capitals, ß as ẞ");
+check(Words.ownLetters("ro") === "ĂÂÎȘȚ" && Words.ownLetters("de") === "ÄÖÜẞ" && Words.ownLetters("es") === "Ñ" && Words.ownLetters("en") === "", "each language's own letters");
+check(Words.letterCount("ȘARPE") === 5 && Words.letterCount("STRAẞE") === 6, "letterCount counts them");
+const roGame = Game.start({ word: "ȘARPE", category: "animals" }, {}, 0);
+check(Game.guess(roGame, "ș").guessed === "Ș" && Game.guess(roGame, "S").wrong === 1, "Ș is its own letter, S is a miss");
+check(Game.guess(Game.start({ word: "STRAẞE", category: "home" }, {}), "ß").guessed === "ẞ", "typing ß guesses ẞ");
+check(Game.isValidWord("ȘARPE") && Game.isValidWord("STRAẞE") && !Game.isValidWord("ȘARPE1") && !Game.isValidWord("-AB"), "valid words with their letters");
+const rvRo = Game.revive({ word: "ȚARĂ", guessed: "ȚARĂ" });
+check(rvRo && rvRo.status === "won", "a saved Romanian game comes back");
+
+console.log("== the keys");
+const keys = (layout, lang, word) => Words.keyRows(layout, lang, word || "").join(" ");
+check(keys("qwerty", "en") === "QWERTYUIOP ASDFGHJKL ZXCVBNM" && keys("abc", "en") === "ABCDEFGHI JKLMNOPQR STUVWXYZ", "English keys as before");
+check(keys("qwerty", "es") === "QWERTYUIOP ASDFGHJKLÑ ZXCVBNM" && keys("abc", "es") === "ABCDEFGHI JKLMNÑOPQ RSTUVWXYZ", "Spanish keys as before");
+check(keys("qwerty", "ro") === "QWERTYUIOP ASDFGHJKL ZXCVBNM ĂÂÎȘȚ" && keys("abc", "ro") === "AĂÂBCDEF GHIÎJKLM NOPQRSȘT ȚUVWXYZ", "Romanian keys");
+check(keys("qwerty", "de") === "QWERTYUIOP ASDFGHJKL ZXCVBNM ÄÖÜẞ" && keys("abc", "de") === "ABCDEFGHIJ KLMNOPQRST UVWXYZÄÖÜẞ", "German keys");
+check(keys("qwerty", "en", "ȘARPE") === "QWERTYUIOP ASDFGHJKL ZXCVBNM Ș" && keys("qwerty", "de", "AÑO").endsWith("ÄÖÜẞÑ"), "a word from another language keeps its letters playable");
+check(Words.keyRows("abc", "ro", "").every(r => r.length <= 10) && Words.keyRows("qwerty", "de", "ȘĂÂÎȚÑ").every(r => r.length <= 10), "never more than 10 keys a row");
 check(Words.clean("año", "ES") === "ANO" && Words.clean("año", "es ") === "ANO" && Words.clean("\uE000o", "es") === "", "only the exact \"es\" keeps ñ, and a stray placeholder is not a letter");
 check(Game.revive({ word: "CAT", guessed: "ABCDEFGHIJKLMNOPQRSTUVWXY" }).guessed.length === 25
   && Game.revive({ word: "CAT", guessed: "ABCDEFGHIJKLMNOPQRSTUVWXYZ" }).guessed.length === 26, "a plain A-Z save is untouched by the longer cap");
