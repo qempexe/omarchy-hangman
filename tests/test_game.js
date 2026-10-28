@@ -15,7 +15,7 @@ function check(c, m) { console.log((c ? "  ok   " : "  FAIL ") + m); if (!c) fai
 console.log("== words");
 const dir = path.join(__dirname, "..", "words");
 const langs = Words.languages.map(l => l.key);
-check(langs.join() === "en,fr,nl,ro,es", "Words.languages has all five");
+check(langs.join() === "en,fr,nl,ro,es,de", "Words.languages has all six");
 let total = 0;
 for (const lang of langs) {
   let bundle = "", count = 0;
@@ -164,7 +164,7 @@ check(Game.pick([], [], Math.random) === null, "empty pool -> null");
 console.log("== schema");
 const d = Schema.defaults;
 check(Schema.resolve({}).lives === 6 && Schema.resolve({ lives: 99 }).lives === 10 && Schema.resolve({ lives: "x" }).lives === 6, "ints clamped");
-check(Schema.resolve({ category: "constructor" }).category === "mixed" && Schema.resolve({ language: "de" }).language === "en" && Schema.resolve({ language: "nl" }).language === "nl", "unknown enum -> default");
+check(Schema.resolve({ category: "constructor" }).category === "mixed" && Schema.resolve({ language: "pt" }).language === "en" && Schema.resolve({ language: "nl" }).language === "nl", "unknown enum -> default");
 check(Schema.resolve({ customBg: "red" }).customBg === "#141414" && Schema.resolve({ customBg: "#ABCDEF" }).customBg === "#abcdef", "colors checked");
 check(Schema.resolve({ barText: "a\u0007b" + "x".repeat(40) }).barText === "abxxxxxxxxxx", "strings cleaned and capped");
 check(Schema.clean("__proto__", 1) === undefined, "unknown keys ignored");
@@ -198,10 +198,12 @@ for (const g of Schema.groups) {
 for (const k of Words.keys) if (!("cat." + k in Lang.texts.en)) noText.push("cat." + k);
 check(noText.length === 0, "every setting and category has its texts " + noText.join(","));
 // the {0}/{1} are part of the contract, not just the set of keys
-for (const k of en) check((Lang.texts.en[k].match(/\{\d\}/g) || []).join() === (Lang.texts.es[k].match(/\{\d\}/g) || []).join(), "the Spanish text for " + k + " keeps the placeholders");
-check(Lang.t("fr", "head.won", 3, 5) === "3 sur 5 gagnés" && Lang.t("de", "tab.play") === "Play" && Lang.t("ro", "nope") === "nope", "t() fills in, falls back");
+for (const l of Lang.languages)
+  for (const k of en) check((Lang.texts.en[k].match(/\{\d\}/g) || []).join() === (Lang.texts[l][k].match(/\{\d\}/g) || []).join(), "the " + l + " text for " + k + " keeps the placeholders");
+check(Lang.t("fr", "head.won", 3, 5) === "3 sur 5 gagnés" && Lang.t("pt", "tab.play") === "Play" && Lang.t("ro", "nope") === "nope", "t() fills in, falls back");
 check(Lang.optionLabels("nl", "length", ["short"], {}).short === "Kort" && Lang.optionLabels("ro", "category", ["food"], {}).food === "Mâncare", "option labels translated");
 check(Lang.t("es", "game") === "El ahorcado", "the game is El ahorcado in Spanish");
+check(Lang.t("de", "game") === "Galgenmännchen" && Lang.t("de", "head.won", 3, 5) === "3 von 5 gewonnen", "the game is Galgenmännchen in German");
 
 // a language has to be added in four places or the settings and the panel disagree
 console.log("== registries");
@@ -212,7 +214,8 @@ check(wordsLangs.join() === Lang.languages.join(), "Words.languages and Lang.lan
 check(wordsLangs.join() === optionsOf("language").join(), "language options agree: " + optionsOf("language").join());
 check(optionsOf("uiLanguage").join() === ["auto"].concat(wordsLangs).join(), "uiLanguage is auto plus every language: " + optionsOf("uiLanguage").join());
 check(Schema.resolve({ language: "es" }).language === "es" && Schema.resolve({ uiLanguage: "es" }).uiLanguage === "es", "Spanish is a real value for both settings");
-check(Schema.resolve({ language: "de" }).language === "en", "an unknown language still falls back");
+check(Schema.resolve({ language: "de" }).language === "de" && Schema.resolve({ uiLanguage: "de" }).uiLanguage === "de", "German is a real value for both settings");
+check(Schema.resolve({ language: "pt" }).language === "en", "an unknown language still falls back");
 
 console.log(fails ? "\nFAILURES: " + fails : "\nALL OK");
 process.exit(fails ? 1 : 0);
