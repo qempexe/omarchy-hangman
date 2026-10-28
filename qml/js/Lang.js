@@ -73,6 +73,7 @@ texts.en = {
     "group.game": "Game",
     "group.look": "Look",
     "group.panel": "Panel",
+    "group.about": "About",
 
     "cat.mixed": "Everything",
     "cat.custom": "Your words",
@@ -169,7 +170,12 @@ texts.en = {
     "set.middleClick": "Middle click",
     "hint.middleClick": "What clicking the bar button with the middle mouse button does.",
     "opt.middleClick.newword": "New word",
-    "opt.middleClick.none": "Nothing"
+    "opt.middleClick.none": "Nothing",
+
+    "about.version": "Version {0}",
+    "about.madeWith": "made with",
+    "about.by": "by qempexe",
+    "about.more": "Check out my other plugins ↗"
 };
 
 texts.fr = {
@@ -233,6 +239,7 @@ texts.fr = {
     "group.game": "Jeu",
     "group.look": "Apparence",
     "group.panel": "Panneau",
+    "group.about": "À propos",
 
     "cat.mixed": "Tout",
     "cat.custom": "Tes mots",
@@ -329,7 +336,12 @@ texts.fr = {
     "set.middleClick": "Clic du milieu",
     "hint.middleClick": "Ce que fait le clic du milieu sur le bouton de la barre.",
     "opt.middleClick.newword": "Nouveau mot",
-    "opt.middleClick.none": "Rien"
+    "opt.middleClick.none": "Rien",
+
+    "about.version": "Version {0}",
+    "about.madeWith": "fait avec",
+    "about.by": "par qempexe",
+    "about.more": "Découvre mes autres plugins ↗"
 };
 
 texts.nl = {
@@ -393,6 +405,7 @@ texts.nl = {
     "group.game": "Spel",
     "group.look": "Uiterlijk",
     "group.panel": "Paneel",
+    "group.about": "Over",
 
     "cat.mixed": "Alles",
     "cat.custom": "Jouw woorden",
@@ -489,7 +502,12 @@ texts.nl = {
     "set.middleClick": "Middelklik",
     "hint.middleClick": "Wat een middelklik op de knop in de balk doet.",
     "opt.middleClick.newword": "Nieuw woord",
-    "opt.middleClick.none": "Niets"
+    "opt.middleClick.none": "Niets",
+
+    "about.version": "Versie {0}",
+    "about.madeWith": "gemaakt met",
+    "about.by": "door qempexe",
+    "about.more": "Bekijk mijn andere plugins ↗"
 };
 
 texts.ro = {
@@ -553,6 +571,7 @@ texts.ro = {
     "group.game": "Joc",
     "group.look": "Aspect",
     "group.panel": "Panou",
+    "group.about": "Despre",
 
     "cat.mixed": "Tot",
     "cat.custom": "Cuvintele tale",
@@ -649,7 +668,12 @@ texts.ro = {
     "set.middleClick": "Click pe rotiță",
     "hint.middleClick": "Ce face un click cu rotița pe butonul din bară.",
     "opt.middleClick.newword": "Cuvânt nou",
-    "opt.middleClick.none": "Nimic"
+    "opt.middleClick.none": "Nimic",
+
+    "about.version": "Versiunea {0}",
+    "about.madeWith": "făcut cu",
+    "about.by": "de qempexe",
+    "about.more": "Vezi și celelalte pluginuri ale mele ↗"
 };
 
 texts.es = {
@@ -713,6 +737,7 @@ texts.es = {
     "group.game": "Juego",
     "group.look": "Aspecto",
     "group.panel": "Panel",
+    "group.about": "Acerca de",
 
     "cat.mixed": "Todo",
     "cat.custom": "Tus palabras",
@@ -809,7 +834,12 @@ texts.es = {
     "set.middleClick": "Clic central",
     "hint.middleClick": "Qué hace el clic con el botón central en el botón de la barra.",
     "opt.middleClick.newword": "Palabra nueva",
-    "opt.middleClick.none": "Nada"
+    "opt.middleClick.none": "Nada",
+
+    "about.version": "Versión {0}",
+    "about.madeWith": "hecho con",
+    "about.by": "por qempexe",
+    "about.more": "Mira mis otros plugins ↗"
 };
 
 texts.de = {
@@ -873,6 +903,7 @@ texts.de = {
     "group.game": "Spiel",
     "group.look": "Aussehen",
     "group.panel": "Panel",
+    "group.about": "Über",
 
     "cat.mixed": "Alles",
     "cat.custom": "Deine Wörter",
@@ -969,7 +1000,12 @@ texts.de = {
     "set.middleClick": "Mittelklick",
     "hint.middleClick": "Was ein Klick mit der mittleren Maustaste auf den Knopf in der Leiste macht.",
     "opt.middleClick.newword": "Neues Wort",
-    "opt.middleClick.none": "Nichts"
+    "opt.middleClick.none": "Nichts",
+
+    "about.version": "Version {0}",
+    "about.madeWith": "gemacht mit",
+    "about.by": "von qempexe",
+    "about.more": "Schau dir meine anderen Plugins an ↗"
 };
 
 // ---------- looking texts up ----------
