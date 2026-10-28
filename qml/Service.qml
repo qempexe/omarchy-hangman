@@ -167,7 +167,12 @@ Item {
         || Quickshell.env("HOME") + "/.config") + "/hangman/words.txt"
     property var customWords: []
 
-    function readCustom() { if (!wordsReader.running) wordsReader.running = true }
+    // asked again while a read is still going (a quick language switch): read once more after it
+    function readCustom() {
+        if (wordsReader.running) { customAgain = true; return }
+        wordsReader.running = true
+    }
+    property bool customAgain: false
 
     Process {
         id: wordsReader
@@ -185,6 +190,7 @@ Item {
                     root.newWord()
             }
         }
+        onExited: if (root.customAgain) { root.customAgain = false; Qt.callLater(root.readCustom) }
     }
     Component.onCompleted: { readCustom(); readLists() }
 
