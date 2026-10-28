@@ -1,6 +1,6 @@
 .pragma library
 
-// Every text you see in the panel, in English, French, Dutch, Romanian and Spanish.
+// Every text you see in the panel, in English, French, Dutch, Romanian, Spanish and German.
 //
 //   t("ro", "tab.play")           -> "Joacă"
 //   t("fr", "head.won", 3, 5)     -> "3 sur 5 gagnés"   ({0} and {1} get filled in)
@@ -8,7 +8,7 @@
 // Missing in a language? Then the English one is used, and if that's missing too,
 // the key itself. So a forgotten translation never shows an empty button.
 
-const languages = ["en", "fr", "nl", "ro", "es"];
+const languages = ["en", "fr", "nl", "ro", "es", "de"];
 
 const texts = {};
 
@@ -810,6 +810,166 @@ texts.es = {
     "hint.middleClick": "Qué hace el clic con el botón central en el botón de la barra.",
     "opt.middleClick.newword": "Palabra nueva",
     "opt.middleClick.none": "Nada"
+};
+
+texts.de = {
+    "game": "Galgenmännchen",
+
+    "tab.play": "Spielen",
+    "tab.stats": "Statistik",
+    "tab.settings": "Einstellungen",
+
+    "btn.newWord": "Neues Wort",
+    "btn.resetStats": "Statistik löschen",
+    "btn.resetAll": "Alles zurücksetzen",
+    "btn.reallyReset": "Wirklich?",
+    "btn.popOut": "Abdocken",
+    "btn.dock": "Andocken",
+    "btn.nextWord": "Nächstes Wort",
+    "btn.nextWordSoon": "Nächstes Wort…",
+    "btn.hint": "Tipp {0}",
+
+    "head.starting": "Startet…",
+    "head.won": "{0} von {1} gewonnen",
+    "head.streak": "Serie {0}",
+    "head.best": "Rekord {0}",
+
+    "foot.close": "schließen",
+    "foot.instant": "Änderungen gelten sofort",
+    "foot.defaults": "Alle Einstellungen sind auf Standard",
+    "foot.differOne": "1 Einstellung weicht vom Standard ab",
+    "foot.differMany": "{0} Einstellungen weichen vom Standard ab",
+    "foot.stats": "Jedes beendete Wort zählt, auch aufgegebene",
+    "foot.enter": "Enter für ein neues Wort",
+    "foot.help": "Buchstaben tippen  ·  ? für einen Tipp  ·  Strg+N neues Wort",
+
+    "play.letters": "{0} Buchstaben",
+    "play.words": "{0} Wörter",
+    "play.lifeOne": "1 Leben übrig",
+    "play.lives": "{0} Leben übrig",
+    "play.noWords": "Keine Wörter zum Spielen",
+    "play.perfect": "Perfekt, kein einziger Fehler",
+    "play.won": "Geschafft!",
+    "play.lost": "Keine Leben mehr",
+
+    "stats.played": "gespielt",
+    "stats.won": "gewonnen",
+    "stats.streak": "Serie",
+    "stats.best": "beste Serie",
+    "stats.perfect": "ohne Fehler",
+    "stats.byCategory": "NACH KATEGORIE",
+    "stats.lastWords": "LETZTE WÖRTER",
+    "stats.empty": "Noch nichts. Beende ein Wort und es erscheint hier.",
+
+    "bar.help": "Rechtsklick für Einstellungen, Mittelklick für ein neues Wort",
+
+    "settings.locked": "In einem abgedockten Fenster nicht genutzt: die Größe bestimmt dein Fenstermanager. Docke es an, um das zu nutzen.",
+    "settings.noCustom": "Die Datei ist leer oder fehlt, du bekommst vorerst alles.",
+    "color.hex": "Hex, wie #ff6a1f",
+    "color.customBg": "Hintergrund",
+    "color.customFg": "Text",
+    "color.accentColor": "Akzent",
+
+    "group.game": "Spiel",
+    "group.look": "Aussehen",
+    "group.panel": "Panel",
+
+    "cat.mixed": "Alles",
+    "cat.custom": "Deine Wörter",
+    "cat.animals": "Tiere",
+    "cat.countries": "Länder",
+    "cat.cities": "Städte",
+    "cat.food": "Essen",
+    "cat.nature": "Natur",
+    "cat.home": "Zuhause",
+    "cat.jobs": "Berufe",
+    "cat.sports": "Sport",
+    "cat.music": "Musik",
+    "cat.science": "Wissenschaft",
+    "cat.space": "Weltraum",
+    "cat.tech": "Computer",
+    "cat.transport": "Verkehr",
+    "cat.clothes": "Kleidung",
+    "cat.body": "Körper",
+
+    "set.language": "Wörter auf",
+    "hint.language": "Die Sprache der Wörter. Akzente fallen weg, é ist einfach E, aber ä ö ü ß im Deutschen, ñ im Spanischen und ă â î ș ț im Rumänischen sind eigene Buchstaben mit eigener Taste.",
+    "set.uiLanguage": "Menüsprache",
+    "hint.uiLanguage": "Die Sprache von allem in diesem Panel. Dieselbe wie die Wörter, oder eine eigene.",
+    "opt.uiLanguage.auto": "Wie die Wörter",
+    "set.category": "Wörter aus",
+    "hint.category": "Alles mischt alle Listen deiner Sprache. Deine Wörter liest ~/.config/hangman/words.txt, ein Wort oder eine Wendung pro Zeile, in jeder Sprache.",
+    "set.length": "Wortlänge",
+    "hint.length": "Kurz sind bis zu 6 Buchstaben, mittel 6 bis 9, lang 9 und mehr.",
+    "opt.length.any": "Egal",
+    "opt.length.short": "Kurz",
+    "opt.length.medium": "Mittel",
+    "opt.length.long": "Lang",
+    "set.lives": "Leben",
+    "hint.lives": "Wie viele falsche Buchstaben du dir leisten kannst. 6 ist das klassische Spiel.",
+    "set.hints": "Tipps pro Wort",
+    "hint.hints": "Ein Tipp zeigt einen versteckten Buchstaben und kostet ein Leben. Nie dein letztes.",
+    "set.reveal": "Mit einem Buchstaben starten",
+    "hint.reveal": "Der erste Buchstabe jedes Wortes ist schon ausgefüllt.",
+    "set.showCategory": "Kategorie zeigen",
+    "hint.showCategory": "Über dem Wort steht, aus welcher Liste es kommt.",
+    "set.autoNext": "Gleich das nächste Wort",
+    "hint.autoNext": "Kurz nach einem fertigen Wort startet ein neues. Aus wartet auf Enter oder Neues Wort.",
+
+    "set.figure": "Zeichnung",
+    "hint.figure": "Was sich mit jedem falschen Buchstaben füllt (oder zerfällt).",
+    "opt.figure.gallows": "Galgen",
+    "opt.figure.balloons": "Ballons",
+    "opt.figure.snowman": "Schneemann",
+    "opt.figure.hearts": "Herzen",
+    "set.keyboard": "Buchstaben am Bildschirm",
+    "hint.keyboard": "Die anklickbaren Buchstaben unter dem Wort. Tippen geht immer.",
+    "opt.keyboard.abc": "A bis Z",
+    "opt.keyboard.off": "Versteckt",
+    "set.colorMode": "Farben",
+    "hint.colorMode": "Theme folgen passt sich live deinem Omarchy-Theme an. Eigene lässt dich Hintergrund, Text und Akzent wählen. Monochrom nimmt jede Farbe weg.",
+    "opt.colorMode.theme": "Theme folgen",
+    "opt.colorMode.custom": "Eigene",
+    "opt.colorMode.monochrome": "Monochrom",
+    "set.customColors": "Eigene Farben",
+    "hint.customColors": "Wähle Hintergrund, Text oder Akzent, dann ein Farbfeld oder tippe einen Hexwert.",
+    "set.density": "Abstände",
+    "hint.density": "Wie viel Luft zwischen den Dingen ist.",
+    "opt.density.compact": "Kompakt",
+    "opt.density.comfortable": "Bequem",
+    "opt.density.spacious": "Großzügig",
+    "set.cornerRadius": "Rundung",
+    "hint.cornerRadius": "0 ist eckig, 20 ist sehr rund.",
+    "set.frame": "Fensterrahmen",
+    "hint.frame": "Den Rand in der Akzentfarbe zeichnen statt als schlichte neutrale Linie.",
+    "set.fontScale": "Textgröße",
+    "hint.fontScale": "1 ist normal, 1.25 ist ein Viertel größer.",
+    "set.surfaceTint": "Fenstertönung",
+    "hint.surfaceTint": "Wie viel Akzentfarbe über den Hintergrund liegt. 0 lässt ihn schlicht.",
+    "set.opacity": "Deckkraft",
+    "hint.opacity": "Hintergrund des Panels.",
+    "set.speed": "Animationstempo",
+    "hint.speed": "Millisekunden, die Zeichnung und Buchstaben für ihre Bewegung brauchen. 0 schaltet Animationen aus.",
+
+    "set.windowWidth": "Panelbreite",
+    "hint.windowWidth": "Wie breit das Panel aufgeht.",
+    "set.windowHeight": "Panelhöhe",
+    "hint.windowHeight": "Wie hoch das Panel aufgeht.",
+    "set.openAs": "Öffnen als",
+    "hint.openAs": "Wo der Knopf in der Leiste das Spiel öffnet. Abdocken oder wieder andocken geht immer über die Kopfzeile.",
+    "opt.openAs.panel": "Leistenpanel",
+    "opt.openAs.window": "Eigenes Fenster",
+    "set.barDisplay": "Knopf in der Leiste zeigt",
+    "hint.barDisplay": "Das Wort zeigt beim Spielen deinen Fortschritt (B _ _ G E S), Leben zeigt die übrigen Herzen.",
+    "opt.barDisplay.text": "Text",
+    "opt.barDisplay.word": "Das Wort",
+    "opt.barDisplay.lives": "Übrige Leben",
+    "set.barText": "Text in der Leiste",
+    "hint.barText": "Für den Text, und wenn kein Wort im Spiel ist.",
+    "set.middleClick": "Mittelklick",
+    "hint.middleClick": "Was ein Klick mit der mittleren Maustaste auf den Knopf in der Leiste macht.",
+    "opt.middleClick.newword": "Neues Wort",
+    "opt.middleClick.none": "Nichts"
 };
 
 // ---------- looking texts up ----------
