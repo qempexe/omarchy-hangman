@@ -217,5 +217,10 @@ check(Schema.resolve({ language: "es" }).language === "es" && Schema.resolve({ u
 check(Schema.resolve({ language: "de" }).language === "de" && Schema.resolve({ uiLanguage: "de" }).uiLanguage === "de", "German is a real value for both settings");
 check(Schema.resolve({ language: "pt" }).language === "en", "an unknown language still falls back");
 
+console.log("== manifest");
+const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "manifest.json"), "utf8"));
+check(manifest.id === "io.github.qempexe.hangman" && manifest.version === "1.1.0", "manifest id and version " + manifest.version);
+check(fs.existsSync(path.join(__dirname, "..", "assets", "logo.png")) && fs.existsSync(path.join(__dirname, "..", "assets", "logo-dark.png")), "the logo is there, light and dark");
+
 console.log(fails ? "\nFAILURES: " + fails : "\nALL OK");
 process.exit(fails ? 1 : 0);
