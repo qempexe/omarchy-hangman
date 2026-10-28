@@ -175,7 +175,7 @@ Item {
         command: ["head", "-c", "65536", root.wordsPath]
         stdout: StdioCollector {
             onStreamFinished: {
-                // ñ survives in a Spanish list, so the file is cleaned for the language in play now
+                // a language keeps its own letters (ñ, ș, ä, ...), so the file is cleaned for the language in play now
                 const switched = wordsReader.lang !== "" && wordsReader.lang !== root.cfg.language
                 root.customWords = Words.parseCustom(text, root.cfg.language)
                 wordsReader.lang = root.cfg.language
