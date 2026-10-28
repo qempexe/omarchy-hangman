@@ -59,25 +59,21 @@ Item {
                 anchors.margins: ui.px(12)
                 spacing: ui.px(10)
 
-                Rectangle {   // badge: three letter slots, one filled
+                Rectangle {
                     Layout.alignment: Qt.AlignVCenter
                     implicitWidth: ui.px(30); implicitHeight: ui.px(30)
                     radius: ui.r(1.5)
                     color: ui.accentTint(0.18)
                     border.width: 1
                     border.color: ui.tint(0.08)
-                    Row {
+                    Image {   // the logo, light or dark to suit the panel
                         anchors.centerIn: parent
-                        anchors.verticalCenterOffset: 2
-                        spacing: 2
-                        Repeater {
-                            model: 3
-                            Item {
-                                width: ui.px(6); height: ui.px(11)
-                                Rectangle { visible: index === 1; width: parent.width; height: ui.px(6); radius: 1; color: ui.accent }
-                                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 2; radius: 1; color: ui.tint(0.5) }
-                            }
-                        }
+                        width: ui.px(24); height: width
+                        source: Qt.resolvedUrl(ui.lightSurface ? "../../assets/logo-dark.png" : "../../assets/logo.png")
+                        sourceSize.width: 96
+                        sourceSize.height: 96
+                        smooth: true
+                        mipmap: true
                     }
                 }
 
